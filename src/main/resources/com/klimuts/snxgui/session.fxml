@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<Pane prefHeight="340.0" prefWidth="410.0" styleClass="modal-dialog-window" stylesheets="@../../../app_style.css"
+      xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.klimuts.snxgui.controller.SessionInfoWindowController">
+    <VBox alignment="TOP_RIGHT" layoutX="11.0" layoutY="11.0" prefHeight="323.0" prefWidth="390.0" spacing="20">
+        <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+        </padding>
+        <children>
+            <HBox alignment="TOP_RIGHT" prefHeight="21.0" prefWidth="348.0">
+                <children>
+                    <Label prefHeight="26.0" prefWidth="328.0" text="Session info">
+                        <font>
+                            <Font name="Arial Bold" size="22.0"/>
+                        </font>
+                        <HBox.margin>
+                            <Insets top="10.0"/>
+                        </HBox.margin>
+                    </Label>
+                    <Button mnemonicParsing="false" onAction="#onCloseButtonClick" prefHeight="36.0" prefWidth="5.0"
+                            styleClass="round-button, close"/>
+                </children>
+                <VBox.margin>
+                    <Insets top="-10.0"/>
+                </VBox.margin>
+            </HBox>
+            <HBox prefHeight="13.0" prefWidth="350.0">
+                <children>
+                    <VBox prefHeight="20.0" prefWidth="145.0">
+                        <children>
+                            <Label prefHeight="20.0" prefWidth="148.0" text="Office Mode IP">
+                                <font>
+                                    <Font name="Arial Bold" size="15.0"/>
+                                </font>
+                            </Label>
+                        </children>
+                        <HBox.margin>
+                            <Insets top="10.0"/>
+                        </HBox.margin>
+                    </VBox>
+                    <VBox alignment="CENTER_RIGHT" prefHeight="20.0" prefWidth="204.0">
+                        <HBox.margin>
+                            <Insets top="10.0"/>
+                        </HBox.margin>
+                        <children>
+                            <Label fx:id="officeModeIP" prefHeight="20.0" prefWidth="209.0" text="-">
+                                <font>
+                                    <Font name="Arial" size="15.0"/>
+                                </font>
+                            </Label>
+                        </children>
+                    </VBox>
+                </children>
+                <VBox.margin>
+                    <Insets bottom="-10.0"/>
+                </VBox.margin>
+            </HBox>
+            <Separator prefWidth="200.0">
+                <VBox.margin>
+                    <Insets bottom="-10.0"/>
+                </VBox.margin>
+            </Separator>
+            <HBox layoutX="30.0" layoutY="76.0" prefHeight="13.0" prefWidth="350.0">
+                <children>
+                    <VBox prefHeight="20.0" prefWidth="145.0">
+                        <children>
+                            <Label prefHeight="20.0" prefWidth="148.0" text="DNS Server">
+                                <font>
+                                    <Font name="Arial Bold" size="15.0"/>
+                                </font>
+                            </Label>
+                        </children>
+                        <HBox.margin>
+                            <Insets top="10.0"/>
+                        </HBox.margin>
+                    </VBox>
+                    <VBox alignment="CENTER_RIGHT" prefHeight="20.0" prefWidth="204.0">
+                        <HBox.margin>
+                            <Insets top="10.0"/>
+                        </HBox.margin>
+                        <children>
+                            <Label fx:id="dnsServer" prefHeight="20.0" prefWidth="207.0" text="-">
+                                <font>
+                                    <Font name="Arial" size="15.0"/>
+                                </font>
+                            </Label>
+                        </children>
+                    </VBox>
+                </children>
+                <VBox.margin>
+                    <Insets bottom="-10.0" top="-10.0"/>
+                </VBox.margin>
+            </HBox>
+            <Separator layoutX="30.0" layoutY="116.0" prefWidth="200.0">
+                <VBox.margin>
+                    <Insets bottom="-10.0"/>
+                </VBox.margin>
+            </Separator>
+            <HBox layoutX="30.0" layoutY="139.0" prefHeight="54.0" prefWidth="350.0">
+                <children>
+                    <VBox prefHeight="40.0" prefWidth="145.0">
+                        <children>
+                            <Label prefHeight="41.0" prefWidth="145.0" text="Secondary DNS Server" wrapText="true">
+                                <font>
+                                    <Font name="Arial Bold" size="15.0"/>
+                                </font>
+                            </Label>
+                        </children>
+                        <HBox.margin>
+                            <Insets top="10.0"/>
+                        </HBox.margin>
+                    </VBox>
+                    <VBox alignment="CENTER_RIGHT" prefHeight="44.0" prefWidth="204.0">
+                        <HBox.margin>
+                            <Insets top="10.0"/>
+                        </HBox.margin>
+                        <children>
+                            <Label fx:id="secondaryDnsServer" alignment="TOP_LEFT" prefHeight="45.0" prefWidth="205.0"
+                                   text="-" wrapText="true">
+                                <font>
+                                    <Font name="Arial" size="15.0"/>
+                                </font>
+                            </Label>
+                        </children>
+                    </VBox>
+                </children>
+                <VBox.margin>
+                    <Insets bottom="-10.0" top="-10.0"/>
+                </VBox.margin>
+            </HBox>
+            <Separator layoutX="30.0" layoutY="189.0" prefWidth="200.0">
+                <VBox.margin>
+                    <Insets bottom="-10.0"/>
+                </VBox.margin>
+            </Separator>
+            <HBox layoutX="30.0" layoutY="212.0" prefHeight="58.0" prefWidth="350.0">
+                <children>
+                    <VBox prefHeight="20.0" prefWidth="145.0">
+                        <children>
+                            <Label prefHeight="20.0" prefWidth="148.0" text="DNS Suffix">
+                                <font>
+                                    <Font name="Arial Bold" size="15.0"/>
+                                </font>
+                            </Label>
+                        </children>
+                        <HBox.margin>
+                            <Insets top="10.0"/>
+                        </HBox.margin>
+                    </VBox>
+                    <VBox alignment="TOP_RIGHT" prefHeight="20.0" prefWidth="205.0">
+                        <HBox.margin>
+                            <Insets top="10.0"/>
+                        </HBox.margin>
+                        <children>
+                            <Label fx:id="dnsSuffix" alignment="TOP_LEFT" prefHeight="44.0" prefWidth="205.0" text="-"
+                                   wrapText="true">
+                                <font>
+                                    <Font name="Arial" size="15.0"/>
+                                </font>
+                            </Label>
+                        </children>
+                    </VBox>
+                </children>
+                <VBox.margin>
+                    <Insets bottom="-10.0" top="-10.0"/>
+                </VBox.margin>
+            </HBox>
+            <Separator layoutX="30.0" layoutY="262.0" prefWidth="200.0">
+                <VBox.margin>
+                    <Insets bottom="-10.0"/>
+                </VBox.margin>
+            </Separator>
+            <HBox layoutX="30.0" layoutY="285.0" prefHeight="13.0" prefWidth="350.0">
+                <children>
+                    <VBox prefHeight="20.0" prefWidth="145.0">
+                        <children>
+                            <Label prefHeight="20.0" prefWidth="148.0" text="Timeout">
+                                <font>
+                                    <Font name="Arial Bold" size="15.0"/>
+                                </font>
+                            </Label>
+                        </children>
+                        <HBox.margin>
+                            <Insets top="10.0"/>
+                        </HBox.margin>
+                    </VBox>
+                    <VBox alignment="CENTER_RIGHT" prefHeight="20.0" prefWidth="204.0">
+                        <HBox.margin>
+                            <Insets top="10.0"/>
+                        </HBox.margin>
+                        <children>
+                            <Label fx:id="timeout" prefHeight="20.0" prefWidth="204.0" text="-">
+                                <font>
+                                    <Font name="Arial" size="15.0"/>
+                                </font>
+                            </Label>
+                        </children>
+                    </VBox>
+                </children>
+                <VBox.margin>
+                    <Insets top="-10.0"/>
+                </VBox.margin>
+            </HBox>
+        </children>
+    </VBox>
+
+</Pane>

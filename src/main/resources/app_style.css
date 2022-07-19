@@ -1,0 +1,213 @@
+.root {
+    -fx-background-radius: 20;
+    -fx-background-color: white;
+    -fx-background-insets: 10;
+    -fx-border-radius: 20;
+    -fx-border-width: 1;
+    -fx-border-color: lightgray;
+    -fx-border-insets: 10;
+    -fx-effect: dropshadow(three-pass-box, dimgray, 10, 0, 4, 4);
+}
+
+.main {
+    -fx-background-radius: 20;
+    -fx-background-color: transparent;
+    -fx-background-image: url("app_background.png");
+    -fx-background-repeat: space;
+    -fx-background-position: center center;
+    -fx-border-radius: 20;
+    -fx-border-width: 1;
+}
+
+.main:pressed {
+    -fx-cursor: move;
+}
+
+.round-button {
+    -fx-min-width: 36;
+    -fx-min-height: 36;
+    -fx-background-radius: 18;
+    -fx-background-color: white;
+    -fx-background-insets: 2;
+    -fx-effect: dropshadow(three-pass-box, lightgray, 2, 0, 2, 2);
+}
+
+.round-button:hover {
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, #F45A29, 10, 0.2, 0, 0);
+}
+
+.round-button:pressed {
+    -fx-scale-y: 0.9;
+    -fx-scale-x: 0.9;
+}
+
+.about {
+    -fx-graphic: url("icons/about_icon.png");
+}
+
+.about:hover {
+    -fx-graphic: url("icons/about_icon_hover.png");
+}
+
+.settings {
+    -fx-graphic: url("icons/settings_icon.png");
+}
+
+.settings:hover {
+    -fx-graphic: url("icons/settings_icon_hover.png");
+}
+
+.minimize {
+    -fx-graphic: url("icons/minimize_icon.png");
+}
+
+.minimize:hover {
+    -fx-graphic: url("icons/minimize_icon_hover.png");
+}
+
+.close {
+    -fx-graphic: url("icons/close_icon.png");
+}
+
+.close:hover {
+    -fx-graphic: url("icons/close_icon_hover.png");
+}
+
+.unmask {
+    -fx-background-color: transparent;
+    -fx-graphic: url("icons/masked_icon.png");
+}
+
+.mask:hover,
+.unmask:hover {
+    -fx-cursor: hand;
+}
+
+.mask {
+    -fx-background-color: transparent;
+    -fx-graphic: url("icons/unmasked_icon.png");
+}
+
+.status-icon-connected {
+    -fx-graphic: url("icons/connected_icon.png");
+}
+
+.status-icon-disconnected {
+    -fx-graphic: url("icons/disconnected_icon.png");
+}
+
+.status-text-connected {
+    -fx-text-fill: #34985C;
+}
+
+.status-text-disconnected {
+    -fx-text-fill: #00000080;
+}
+
+.session-info-button {
+    -fx-font-size: 14;
+    -fx-border-color: black;
+    -fx-border-width: 0 0 1 0;
+    -fx-border-insets: 0 0 2 0;
+    -fx-padding: 0 0 -3 0;
+}
+
+.session-info-button:hover {
+    -fx-cursor: hand;
+}
+
+.session-info-button:pressed {
+    -fx-scale-y: 0.9;
+    -fx-scale-x: 0.9;
+}
+
+.connect-button {
+    -fx-min-width: 280;
+    -fx-min-height: 38;
+    -fx-background-color: linear-gradient(to right, #F45A29, #F1026E);
+    -fx-background-radius: 60px;
+    -fx-text-fill: white;
+    -fx-effect: dropshadow(three-pass-box, lightgray, 2, 0, 2, 2);
+}
+
+.ok-button {
+    -fx-min-width: 130;
+    -fx-min-height: 38;
+    -fx-background-color: linear-gradient(to right, #F45A29, #F1026E);
+    -fx-background-radius: 60px;
+    -fx-text-fill: white;
+    -fx-effect: dropshadow(three-pass-box, lightgray, 2, 0, 0, 0);
+}
+
+.cancel-button {
+    -fx-min-width: 130;
+    -fx-min-height: 38;
+    -fx-border-color: linear-gradient(to right, #F45A29, #F1026E);
+    -fx-border-radius: 60px;
+    -fx-border-width: 3;
+    -fx-background-color: white;
+    -fx-background-radius: 60;
+    -fx-effect: dropshadow(three-pass-box, lightgray, 1, 0, 0, 0);
+}
+
+.ok-button:hover,
+.cancel-button:hover,
+.connect-button:hover {
+    -fx-cursor: hand;
+    -fx-background-color: #F45A29;
+    -fx-border-width: 0;
+    -fx-text-fill: white;
+}
+
+.connect-button:pressed,
+.ok-button:pressed,
+.cancel-button:pressed,
+.connect-button:pressed {
+    -fx-background-color: #F45A29;
+    -fx-scale-y: 0.9;
+    -fx-scale-x: 0.9;
+}
+
+.modal-dialog-window {
+    -fx-alignment: center;
+    -fx-background-color: white;
+    -fx-background-insets: 0;
+    -fx-border-insets: 0;
+    -fx-background-radius: 20;
+    -fx-effect: none;
+}
+
+.author-label {
+    -fx-text-fill: #00000099;
+    -fx-border-color: #00000099;
+    -fx-border-width: 0 0 1 0;
+    -fx-border-insets: 0 0 2 0;
+    -fx-padding: 0 0 -3 0;
+}
+
+.author-label:hover {
+    -fx-cursor: hand;
+}
+
+.check-box .box {
+    -fx-pref-width: 16;
+    -fx-pref-height: 16;
+    -fx-background-color: white;
+    -fx-border-color: grey;
+    -fx-border-radius: 2px;
+}
+
+.check-box .mark {
+    -fx-background-insets: 3 3 2 2;
+    -fx-shape: "M1 0h6s1 0 1 1v6s0 1 -1 1h-6s-1 0 -1 -1v-6s0 -1 1 -1";
+}
+
+.check-box:selected .mark {
+    -fx-background-color: #F45A29;
+}
+
+.check-box:selected .box {
+    -fx-border-color: #F45A29;
+    -fx-background-color: white;
+}

@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<Pane prefHeight="410.0" prefWidth="410.0" styleClass="modal-dialog-window" stylesheets="@../../../app_style.css"
+      xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.klimuts.snxgui.controller.ConfigWindowController">
+    <VBox alignment="TOP_RIGHT" layoutX="11.0" layoutY="11.0" prefHeight="392.0" prefWidth="388.0" spacing="20">
+        <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+        </padding>
+        <children>
+            <HBox alignment="TOP_RIGHT" prefHeight="21.0" prefWidth="348.0">
+                <children>
+                    <Label prefHeight="26.0" prefWidth="328.0" text="Configuration">
+                        <font>
+                            <Font name="Arial Bold" size="22.0"/>
+                        </font>
+                        <HBox.margin>
+                            <Insets top="10.0"/>
+                        </HBox.margin>
+                    </Label>
+                    <Button mnemonicParsing="false" onAction="#onCloseButtonClick" prefHeight="36.0" prefWidth="5.0"
+                            styleClass="round-button, close"/>
+                </children>
+                <VBox.margin>
+                    <Insets top="-10.0"/>
+                </VBox.margin>
+            </HBox>
+            <HBox prefHeight="8.0" prefWidth="348.0">
+                <children>
+                    <Label prefHeight="14.0" prefWidth="167.0" text="Server address">
+                        <font>
+                            <Font name="Arial Bold" size="16.0"/>
+                        </font>
+                        <HBox.margin>
+                            <Insets bottom="-10.0"/>
+                        </HBox.margin>
+                    </Label>
+                </children>
+            </HBox>
+            <HBox prefHeight="40.0" prefWidth="348.0">
+                <children>
+                    <TextField fx:id="serverAddress" alignment="BASELINE_LEFT" prefHeight="52.0" prefWidth="348.0">
+                        <font>
+                            <Font name="Arial" size="16.0"/>
+                        </font>
+                        <padding>
+                            <Insets bottom="10.0" left="10.0"/>
+                        </padding>
+                        <opaqueInsets>
+                            <Insets/>
+                        </opaqueInsets>
+                        <HBox.margin>
+                            <Insets/>
+                        </HBox.margin>
+                    </TextField>
+                </children>
+                <VBox.margin>
+                    <Insets bottom="-10.0"/>
+                </VBox.margin>
+            </HBox>
+            <HBox layoutX="30.0" layoutY="76.0" prefHeight="8.0" prefWidth="348.0">
+                <children>
+                    <Label prefHeight="14.0" prefWidth="167.0" text="Login">
+                        <font>
+                            <Font name="Arial Bold" size="16.0"/>
+                        </font>
+                        <HBox.margin>
+                            <Insets bottom="-10.0"/>
+                        </HBox.margin>
+                    </Label>
+                </children>
+            </HBox>
+            <HBox layoutX="30.0" layoutY="106.0" prefHeight="40.0" prefWidth="348.0">
+                <children>
+                    <TextField fx:id="login" alignment="BASELINE_LEFT" prefHeight="52.0" prefWidth="348.0">
+                        <font>
+                            <Font name="Arial" size="16.0"/>
+                        </font>
+                        <padding>
+                            <Insets bottom="10.0" left="10.0"/>
+                        </padding>
+                        <opaqueInsets>
+                            <Insets/>
+                        </opaqueInsets>
+                    </TextField>
+                </children>
+                <VBox.margin>
+                    <Insets bottom="-10.0"/>
+                </VBox.margin>
+            </HBox>
+            <HBox layoutX="30.0" layoutY="156.0" prefHeight="8.0" prefWidth="348.0">
+                <children>
+                    <Label prefHeight="14.0" prefWidth="167.0" text="Common">
+                        <font>
+                            <Font name="Arial Bold" size="16.0"/>
+                        </font>
+                        <HBox.margin>
+                            <Insets bottom="-10.0"/>
+                        </HBox.margin>
+                    </Label>
+                </children>
+            </HBox>
+            <HBox prefHeight="52.0" prefWidth="348.0">
+                <children>
+                    <VBox prefHeight="54.0" prefWidth="183.0">
+                        <children>
+                            <CheckBox fx:id="enableDebug" mnemonicParsing="false" text="Enable SNX debug">
+                                <VBox.margin>
+                                    <Insets bottom="10.0"/>
+                                </VBox.margin>
+                                <font>
+                                    <Font name="Arial" size="16.0"/>
+                                </font>
+                            </CheckBox>
+                            <CheckBox fx:id="disconnectOnExit" mnemonicParsing="false" text="Disconnect on exit">
+                                <font>
+                                    <Font name="Arial" size="16.0"/>
+                                </font>
+                            </CheckBox>
+                        </children>
+                    </VBox>
+                </children>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" prefHeight="45.0" prefWidth="348.0">
+                <children>
+                    <Button mnemonicParsing="false" onAction="#onCloseButtonClick" styleClass="cancel-button"
+                            text="CANCEL">
+                        <HBox.margin>
+                            <Insets right="10.0"/>
+                        </HBox.margin>
+                        <font>
+                            <Font name="Arial Bold" size="13.0"/>
+                        </font>
+                    </Button>
+                    <Button defaultButton="true" mnemonicParsing="false" onAction="#onSaveButtonClick"
+                            styleClass="ok-button" text="SAVE">
+                        <font>
+                            <Font name="Arial Bold" size="13.0"/>
+                        </font>
+                    </Button>
+                </children>
+            </HBox>
+        </children>
+    </VBox>
+
+</Pane>
