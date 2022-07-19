@@ -47,27 +47,27 @@ Launch the program by double-clicking the shortcut on the desktop or in Applicat
 <table>
   <tr>
     <td><img src="doc/images/button/about_button.png" alt=""></td>
-    <td>open about window</td>
+    <td>Opens about window</td>
   </tr>
   <tr>
     <td><img src="doc/images/button/settings_button.png" alt=""></td>
-    <td>open application configuration window</td>
+    <td>Opens application configuration window</td>
   </tr>
   <tr>
     <td><img src="doc/images/button/minimize_button.png" alt=""></td>
-    <td>minimizes the application window</td>
+    <td>Minimizes the application window</td>
   </tr>
   <tr>
     <td><img src="doc/images/button/close_button.png" alt=""></td>
-    <td>closes the application window (the application is still running and available in the tray)</td>
+    <td>Closes the application window (the application is still running and available in the tray)</td>
   </tr>
   <tr>
-    <td>(DIS)CONNECT</td>
-    <td>establishes/terminates connection </td>
+    <td>(CONNECT)</td>
+    <td>Establishes/terminates connection. The name of the button changes depending on the connection status to CONNECT or DISCONNECT</td>
   </tr>
   <tr>
     <td><ins>Sessin info</ins></td>
-    <td>displays information about the connection</td>
+    <td>Displays information about the connection</td>
   </tr>
 </table>
 
@@ -84,7 +84,7 @@ Enter and save the server address and user name before connecting
 Press the `CONNECT` button, the password input window opens
 ![](doc/images/window/password_masked.png)
 
-![](src/main/resources/icons/masked_icon.png) - press to unmask password
+![](src/main/resources/icons/masked_icon.png) - press to unmask the password, if necessary
 ![](doc/images/window/password_unmasked.png)
 
 Press `OK` to start connection. A terminal window will open, do not close this window, it will be closed automatically
@@ -98,7 +98,7 @@ If any connection error occurs, the corresponding message will be displayed on t
 
 ### Session info
 
-Press the `Sessin info` button on the connected window
+Press the `Sessin info` button on the connected window, a window with session information will open
 ![info window](doc/images/window/session_info.png)
 
 ### About info

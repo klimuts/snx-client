@@ -20,11 +20,11 @@ Launch the program by double-clicking the shortcut on the desktop or in Applicat
 
 ### Uninstallation
 
-Go into application directory, run the uninstall file from the console
+Go into application directory, run the `uninstall` file from the console
 
 $ ./uninstall
 
-Or for Ubuntu, right-click on uninstall file and select "Run As Program".
+Or for Ubuntu, right-click on `uninstall` file and select "Run As Program".
 
 This script will automatically remove shortcuts from the desktop and from Applications, and remove service files.
 
@@ -45,7 +45,7 @@ This script will automatically remove shortcuts from the desktop and from Applic
 Запустите программу двойным щелчком по ярлыку на рабочем столе или в Приложениях.
 
 ### Удаление
-Перейдите в каталог приложения, запустите файл деинсталляции из консоли
+Перейдите в каталог приложения, запустите файл `uninstall` из консоли
 
 `$ ./uninstall`
 
