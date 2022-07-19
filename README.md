@@ -6,7 +6,7 @@ Graphical user interface for CheckPoint SSL Network Extender (SNX) for Linux OS.
     <img src="doc/images/logo.png" alt="SNX Client" title="SNX Client" height="76" />
 </a>  
 
-![GitHub](https://img.shields.io/github/license/klimuts/vpn-client)
+![GitHub](https://img.shields.io/github/license/klimuts/snx-client)
 [![powered](https://img.shields.io/badge/powered%20by-JAVA%2017%20%7C%20JAVA%20FX%2018-red)](https://github.com/klimuts/vpn-client)
 ![badge](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/klimuts/4295e39592a376a1c7dfbaf275bb2d3a/raw/release.json)
 
