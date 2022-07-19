@@ -1,0 +1,124 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.0.13'
+    id 'org.beryx.jlink' version '2.25.0'
+}
+
+group 'com.klimuts'
+version = new File('src/main/resources/version').getText('UTF-8').trim()
+
+ext {
+    arch_name = "snx-client-v${version}.zip"
+}
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+sourceCompatibility = '17'
+targetCompatibility = '17'
+
+javafx {
+    version = '18'
+    modules = ['javafx.controls', 'javafx.fxml', 'javafx.web', 'javafx.graphics']
+}
+
+// solve com.dorkbox:SystemTray:4.1 loggers issue
+configurations.all {
+    resolutionStrategy {
+        force 'org.slf4j:slf4j-api:1.7.25'
+    }
+}
+
+dependencies {
+    // solve com.dorkbox:SystemTray:4.1 loggers issue
+    implementation 'javax.servlet:javax.servlet-api:4.0.1'
+
+    implementation 'com.dorkbox:SystemTray:4.1'
+    implementation 'com.dorkbox:SystemTray-Dorkbox-Util:2.20'
+
+    compileOnly 'org.projectlombok:lombok:1.18.24'
+    annotationProcessor 'org.projectlombok:lombok:1.18.24'
+    testImplementation "org.projectlombok:lombok:1.18.24"
+
+    testCompileOnly 'org.junit.jupiter:junit-jupiter-api:5.8.2'
+    testCompileOnly group: 'org.assertj', name: 'assertj-core', version: '3.13.2'
+
+    testCompileOnly 'org.testfx:testfx-core:4.0.16-alpha'
+    testCompileOnly 'org.testfx:testfx-junit5:4.0.16-alpha'
+}
+
+jlink {
+    options = ['--strip-debug', '--compress', '2', '--no-header-files', '--no-man-pages']
+    launcher {
+        noConsole = true
+        name = 'snx-client'
+        jvmArgs = ['--add-exports=javafx.graphics/com.sun.javafx.tk=com.klimuts.merged.module',
+                   '--add-exports=javafx.graphics/com.sun.glass.ui=com.klimuts.snxgui',
+                   '--add-exports=javafx.graphics/com.sun.javafx.application=com.klimuts.snxgui'
+        ]
+    }
+    addExtraDependencies("javafx")
+
+    mergedModule {
+        additive = true
+        uses 'ch.qos.logback.classic.spi.Configurator'
+    }
+}
+
+compileJava {
+    options.encoding = "UTF-8"
+    options.incremental = true
+
+    options.compilerArgs.addAll([
+            "--add-exports",
+            "javafx.graphics/com.sun.glass.ui=com.klimuts.snxgui"
+    ])
+
+    options.compilerArgs.addAll([
+            "--add-exports",
+            "javafx.graphics/com.sun.javafx.application=com.klimuts.snxgui"
+    ])
+}
+
+application {
+    mainModule = 'com.klimuts.snxgui'
+    mainClass = 'com.klimuts.snxgui.SnxClient'
+}
+
+task copyBin {
+    copy {
+        from("$projectDir/bin") {
+            include "state.sh", "state"
+        }
+        into "$buildDir/image/bin"
+    }
+    copy {
+        from("$projectDir/bin") {
+            include "snx-client.conf", "icon.png"
+        }
+        into "$buildDir/image/conf"
+    }
+    copy {
+        from("$projectDir/bin") {
+            include "install", "uninstall"
+        }
+        into "$buildDir/image"
+    }
+    copy {
+        from("$projectDir/doc") {
+            include "README.md"
+        }
+        into "$buildDir/image"
+    }
+    delete("$buildDir/image/release")
+}
+
+task zipDistrImage(type: Zip) {
+    archiveFileName = "$arch_name"
+    destinationDirectory = layout.buildDirectory.dir('distribution')
+
+    from layout.buildDirectory.dir("image")
+}

@@ -1,0 +1,19 @@
+#!/bin/sh
+### Remove the application components if app is already installed
+CURRENT_DIR=$(pwd)
+if [ -f ~/Desktop/snxgui.desktop ]; then
+
+  sudo echo "-> Remove shortcuts"
+  sudo rm -f ~/Desktop/snxgui.desktop
+  sudo rm -f ~/.local/share/applications/snxgui.desktop
+  sudo rm -f /usr/share/applications/snxgui.desktop
+
+  echo "-> Remove service files"
+  sudo rm -f "$CURRENT_DIR"/bin/start
+  sudo rm -f "$CURRENT_DIR"/bin/run.pid
+
+  echo "The SNX Client components has been successfully removed!"
+else
+  echo "The SNX Client components not found"
+fi
+sleep 2

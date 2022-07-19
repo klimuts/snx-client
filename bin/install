@@ -1,0 +1,62 @@
+#!/bin/sh
+### Install application (create shortcuts and service files)
+CURRENT_DIR=$(pwd)
+sudo echo "Check and remove the previous installation components..."
+### Remove previous components of the application, if they exist
+./uninstall;
+
+echo ""
+echo "Start SNX Client installation..."
+### Create desktop entry
+echo "-> Create shortcuts"
+echo "[Desktop Entry]
+Encoding=UTF-8
+Name=SNX Client
+Exec=$CURRENT_DIR/bin/start
+Icon=$CURRENT_DIR/conf/icon.png
+Terminal=true
+Type=Application
+Categories=Utility;
+StartupNotify=true" >> ~/Desktop/snxgui.desktop
+sudo chmod +x ~/Desktop/snxgui.desktop
+gio set ~/Desktop/snxgui.desktop metadata::trusted true
+
+### Copy desktop entry to Desktop and Applications menu
+cp ~/Desktop/snxgui.desktop ~/.local/share/applications
+sudo cp ~/Desktop/snxgui.desktop /usr/share/applications
+
+### Creates application service files
+
+# Logs folder
+echo "-> Create logs folder"
+mkdir -p "log"
+chmod -R 777 log
+
+# Start script
+echo "-> Create startup file"
+{
+cat <<EOF >>bin/start
+#!/bin/bash
+cd $CURRENT_DIR/bin
+nohup ./snx-client > ../log/snx.log 2>&1 & sleep 0.01
+echo $! > run.pid
+kill -9 $(cat run.pid)
+EOF
+chmod +x bin/start
+} >/dev/null 2>&1;
+
+# SNX config
+echo "-> Check SNX config file"
+{
+  if [ ! -f ~/.snxrc ]; then
+    cat <<EOF >> ~/.snxrc
+debug no
+username
+server
+EOF
+  fi
+} >/dev/null 2>&1;
+
+echo ""
+echo "The SNX Client has been successfully installed!\nTo launch the application, double-click the shortcut on the desktop or in Applications."
+sleep 10
