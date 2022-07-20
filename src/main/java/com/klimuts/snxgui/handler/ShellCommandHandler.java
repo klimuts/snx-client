@@ -1,7 +1,7 @@
 package com.klimuts.snxgui.handler;
 
 import com.klimuts.snxgui.exception.ShownOnModalException;
-import com.klimuts.snxgui.model.ShellCommand;
+import com.klimuts.snxgui.model.enums.ShellCommand;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -32,10 +32,8 @@ public class ShellCommandHandler {
             if (exitVal == 0) {
                 collectShellOutput(output, process.getInputStream());
             } else {
-                if (command != ShellCommand.DISCONNECT) {
-                    collectShellOutput(output, process.getErrorStream());
-                    collectShellOutput(output, process.getInputStream());
-                }
+                collectShellOutput(output, process.getErrorStream());
+                collectShellOutput(output, process.getInputStream());
             }
         } catch (IOException | InterruptedException e) {
             throw new ShownOnModalException("SNX Client: cannot execute shell command");

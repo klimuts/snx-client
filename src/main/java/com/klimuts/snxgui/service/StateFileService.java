@@ -1,6 +1,7 @@
 package com.klimuts.snxgui.service;
 
 import com.klimuts.snxgui.config.AppConfig;
+import com.klimuts.snxgui.di.annotation.Component;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -10,6 +11,7 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
+@Component
 public class StateFileService {
 
     public static final String SUCCESS_STOP_MARKER = "===================";

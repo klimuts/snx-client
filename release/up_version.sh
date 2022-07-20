@@ -31,9 +31,6 @@ fi
 
 new_version=$(cat ../src/main/resources/version)
 
-# Create an appropriate git tag
-git tag v"$new_version"
-
 # Change the version in the Readme files
 sed -i "1c\# SNX Client v$new_version" ../doc/README.md
 sed -i "1c\# SNX Client v$new_version" ../README.md

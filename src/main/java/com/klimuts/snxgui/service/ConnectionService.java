@@ -1,20 +1,21 @@
 package com.klimuts.snxgui.service;
 
+import com.klimuts.snxgui.di.annotation.Autowired;
+import com.klimuts.snxgui.di.annotation.Component;
 import com.klimuts.snxgui.handler.ShellCommandHandler;
-import com.klimuts.snxgui.model.SessionInfoKey;
-import com.klimuts.snxgui.model.ShellCommand;
-import lombok.RequiredArgsConstructor;
+import com.klimuts.snxgui.model.enums.SessionInfoKey;
+import com.klimuts.snxgui.model.enums.ShellCommand;
 
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@RequiredArgsConstructor
+@Component
 public class ConnectionService {
 
-    private final ShellCommandHandler commandHandler;
-    private final StateFileService stateFileService;
+    @Autowired private ShellCommandHandler commandHandler;
+    @Autowired private StateFileService stateFileService;
 
     public void connect(String passcode) {
         commandHandler.runShellCommand(ShellCommand.CONNECT, passcode);

@@ -1,28 +1,24 @@
 package com.klimuts.snxgui.di;
 
-import com.klimuts.snxgui.handler.ShellCommandHandler;
-import com.klimuts.snxgui.service.*;
+import com.klimuts.snxgui.di.annotation.Component;
 
-import java.util.HashMap;
 import java.util.Map;
 
+@Component
 public class Context {
 
-    private static Map<Class<?>, Object> beans;
+    private final Map<Class<?>, Object> beans;
 
-    public static void init() {
-        beans = new HashMap<>();
+    public Context(Map<Class<?>, Object> beans) {
+        this.beans = beans;
+    }
 
-        beans.put(ModalWindowService.class, new ModalWindowService());
-        beans.put(ShellCommandHandler.class, new ShellCommandHandler());
-        beans.put(ModalPaneLoader.class, new ModalPaneLoader());
-        beans.put(StateFileService.class, new StateFileService());
-        beans.put(ConnectionService.class, new ConnectionService(getBean(ShellCommandHandler.class), getBean(StateFileService.class)));
-        beans.put(ConfigService.class, new ConfigService());
+    public void addBean(Class<?> clazz, Object bean) {
+        beans.put(clazz, bean);
     }
 
     @SuppressWarnings("unchecked")
-    public static <T> T getBean(Class<?> clazz) {
+    public <T> T getBean(Class<?> clazz) {
         return (T) beans.get(clazz);
     }
 

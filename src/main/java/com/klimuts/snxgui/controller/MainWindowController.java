@@ -1,8 +1,13 @@
 package com.klimuts.snxgui.controller;
 
 import com.klimuts.snxgui.SnxClient;
+import com.klimuts.snxgui.di.annotation.Autowired;
+import com.klimuts.snxgui.di.annotation.Component;
 import com.klimuts.snxgui.model.ModalWindowConfig;
-import com.klimuts.snxgui.model.ModalWindowType;
+import com.klimuts.snxgui.model.enums.ModalWindowType;
+import com.klimuts.snxgui.service.ConfigService;
+import com.klimuts.snxgui.service.ConnectionService;
+import com.klimuts.snxgui.service.ModalWindowService;
 import dorkbox.systemTray.SystemTray;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,7 +19,12 @@ import javafx.stage.Stage;
 
 import java.net.URL;
 
+@Component
 public class MainWindowController extends WindowController {
+
+    @Autowired private ConfigService configService;
+    @Autowired private ConnectionService connectionService;
+    @Autowired private ModalWindowService modalWindowService;
 
     @FXML public Button closeButton;
     @FXML public Button minButton;
@@ -32,7 +42,6 @@ public class MainWindowController extends WindowController {
     private URL disconnectedTrayIconUrl;
 
     public void initialize() {
-        super.initialize();
         systemTray = SystemTray.get("SNX");
 
         connectedTrayIconUrl = SnxClient.class.getResource("tray_icons/connected_icon.png");

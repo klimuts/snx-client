@@ -1,13 +1,15 @@
 package com.klimuts.snxgui.controller;
 
+import com.klimuts.snxgui.di.annotation.Component;
 import com.klimuts.snxgui.exception.ShownOnModalException;
-import com.klimuts.snxgui.model.SessionInfoKey;
+import com.klimuts.snxgui.model.enums.SessionInfoKey;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
 import java.io.IOException;
 import java.util.Map;
 
+@Component
 public class SessionInfoWindowController extends WindowController {
 
     @FXML public Label officeModeIP;
@@ -17,7 +19,6 @@ public class SessionInfoWindowController extends WindowController {
     @FXML public Label timeout;
 
     public void initialize() {
-        super.initialize();
         try {
             Map<SessionInfoKey, String> sessionInfo = connectionService.getConnectionInfo();
 

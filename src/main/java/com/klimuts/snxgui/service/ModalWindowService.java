@@ -1,9 +1,10 @@
 package com.klimuts.snxgui.service;
 
-import com.klimuts.snxgui.di.Context;
+import com.klimuts.snxgui.di.annotation.Autowired;
+import com.klimuts.snxgui.di.annotation.Component;
 import com.klimuts.snxgui.exception.ShownOnModalException;
 import com.klimuts.snxgui.model.ModalWindowConfig;
-import com.klimuts.snxgui.model.ModalWindowType;
+import com.klimuts.snxgui.model.enums.ModalWindowType;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.effect.BlurType;
@@ -19,7 +20,10 @@ import lombok.Getter;
 
 import java.util.concurrent.Callable;
 
+@Component
 public class ModalWindowService {
+
+    @Autowired ModalPaneLoader modalsProvider;
 
     @Getter
     private String errorMessage;
@@ -27,8 +31,6 @@ public class ModalWindowService {
     private Stage modalStage;
 
     public void openModalWindow(ModalWindowConfig config) {
-        ModalPaneLoader modalsProvider = Context.getBean(ModalPaneLoader.class);
-
         Pane modalPane = modalsProvider.loadFxmlFile(config.getWindowType().getFxmlFileName());
         Stage parentStage = config.getParentStage();
         parentRoot = parentStage.getScene().getRoot();

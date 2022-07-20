@@ -1,5 +1,6 @@
 package com.klimuts.snxgui.controller;
 
+import com.klimuts.snxgui.di.annotation.Component;
 import com.klimuts.snxgui.exception.ShownOnModalException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -9,6 +10,7 @@ import javafx.scene.control.ToggleButton;
 
 import java.io.IOException;
 
+@Component
 public class PasswordWindowController extends WindowController {
 
     @FXML public ToggleButton unmaskButton;
@@ -16,7 +18,6 @@ public class PasswordWindowController extends WindowController {
     @FXML public TextField passwordTextField;
 
     public void initialize() {
-        super.initialize();
         this.onUnmaskButtonClick(null);
     }
 

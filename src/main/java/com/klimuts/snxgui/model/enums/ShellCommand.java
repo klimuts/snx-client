@@ -1,4 +1,4 @@
-package com.klimuts.snxgui.model;
+package com.klimuts.snxgui.model.enums;
 
 public enum ShellCommand {
 
