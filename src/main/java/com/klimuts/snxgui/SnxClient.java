@@ -2,7 +2,10 @@ package com.klimuts.snxgui;
 
 import com.klimuts.snxgui.config.AppConfig;
 import com.klimuts.snxgui.di.Context;
-import com.klimuts.snxgui.model.ConfigKey;
+import com.klimuts.snxgui.di.ContextInitializer;
+import com.klimuts.snxgui.di.annotation.Autowired;
+import com.klimuts.snxgui.di.annotation.Component;
+import com.klimuts.snxgui.model.enums.ConfigKey;
 import com.klimuts.snxgui.service.ConfigService;
 import com.klimuts.snxgui.service.ConnectionService;
 import com.klimuts.snxgui.service.ModalWindowService;
@@ -20,24 +23,35 @@ import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
+@Component
 public class SnxClient extends Application {
+
+    @Autowired private ConfigService configService;
+    @Autowired private ConnectionService connectionService;
+    @Autowired private ModalWindowService modalWindowService;
 
     private double xOffset = 0;
     private double yOffset = 0;
 
     private SystemTray systemTray;
-    private ConfigService configService;
-    private ConnectionService connectionService;
-    private ModalWindowService modalWindowService;
 
     @Override
     public void start(Stage stage) throws IOException {
         Platform.setImplicitExit(false);
 
-        initDependencies();
+        Parent root = initMainStage(stage);
         initGlobalExceptionHandlers(stage);
+        initDragSettings(stage, root);
+        initSystemTray(stage);
+
+        stage.show();
+    }
+
+    private Parent initMainStage(Stage stage) throws IOException {
+        Context context = ContextInitializer.init(this, SnxClient.class.getPackageName());
 
         FXMLLoader loader = new FXMLLoader(SnxClient.class.getResource("main.fxml"));
+        loader.setControllerFactory(context::getBean);
         Parent root = loader.load();
 
         Scene scene = new Scene(root, 640, 460);
@@ -49,18 +63,8 @@ public class SnxClient extends Application {
         stage.getIcons().add(new javafx.scene.image.Image("app_icon.png"));
         stage.setTitle(AppConfig.APP_NAME);
         stage.setScene(scene);
-        stage.show();
 
-        initDragSettings(stage, root);
-        initSystemTray(stage);
-    }
-
-    private void initDependencies() throws IOException {
-        Context.init();
-        modalWindowService = Context.getBean(ModalWindowService.class);
-        connectionService = Context.getBean(ConnectionService.class);
-        configService = Context.getBean(ConfigService.class);
-        configService.initConfig();
+        return root;
     }
 
     private void initDragSettings(Stage stage, Parent root) {
@@ -81,6 +85,7 @@ public class SnxClient extends Application {
             throw new RuntimeException("Unable to load SystemTray!");
         }
         systemTray.installShutdownHook();
+
         systemTray.getMenu().add(new MenuItem("Show", e -> {
             Platform.runLater(() -> {
                 if (stage.isShowing()) {
@@ -91,10 +96,14 @@ public class SnxClient extends Application {
             });
         })).setShortcut('o');
 
-        systemTray.getMenu().add(new MenuItem("Quit", e -> {
+        systemTray.getMenu().add(new MenuItem("Quit", event -> {
             systemTray.shutdown();
-            if (Boolean.parseBoolean(configService.getConfig().get(ConfigKey.DISCONNECT_ON_EXIT))) {
-                connectionService.disconnect();
+            try {
+                if (Boolean.parseBoolean(configService.getConfig().get(ConfigKey.DISCONNECT_ON_EXIT))) {
+                    connectionService.disconnect();
+                }
+            } catch (Exception e) {
+                Platform.exit();
             }
             Platform.exit();
         })).setShortcut('q');

@@ -2,6 +2,7 @@ package com.klimuts.snxgui.controller;
 
 import com.klimuts.snxgui.SnxClient;
 import com.klimuts.snxgui.config.AppConfig;
+import com.klimuts.snxgui.di.annotation.Component;
 import com.klimuts.snxgui.exception.ShownOnModalException;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -14,18 +15,18 @@ import java.io.InputStreamReader;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+@Component
 public class AboutWindowController extends WindowController {
 
     @FXML public Label version;
     @FXML public Label authorLabel;
 
     public void initialize() {
-        super.initialize();
-
         Platform.runLater(this::readVersion);
     }
 
-    public void onAuthorLabelClicked(MouseEvent mouseEvent) {
+    @FXML
+    public void onAuthorLabelClick(MouseEvent mouseEvent) {
         new SnxClient().getHostServices().showDocument("mailto:" + authorLabel.getText() + "?subject=SNX Client");
     }
 

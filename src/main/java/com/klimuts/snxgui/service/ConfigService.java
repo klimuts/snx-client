@@ -1,7 +1,8 @@
 package com.klimuts.snxgui.service;
 
 import com.klimuts.snxgui.config.AppConfig;
-import com.klimuts.snxgui.model.ConfigKey;
+import com.klimuts.snxgui.di.annotation.Component;
+import com.klimuts.snxgui.model.enums.ConfigKey;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -11,19 +12,20 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Component
 public class ConfigService {
 
     public static final String APP_SEPARATOR = "=";
     public static final String SNX_SEPARATOR = " ";
 
-    private Map<ConfigKey, String> config;
-    private String userHomeDir;
+    private final Map<ConfigKey, String> config;
+    private final String userHomeDir;
 
     public Map<ConfigKey, String> getConfig() {
         return config;
     }
 
-    public void initConfig() throws IOException {
+    public ConfigService() throws IOException {
         config = new HashMap<>();
         userHomeDir = System.getProperty("user.home");
         initAppConfig();

@@ -1,9 +1,8 @@
 package com.klimuts.snxgui.controller;
 
-import com.klimuts.snxgui.di.Context;
+import com.klimuts.snxgui.di.annotation.Component;
 import com.klimuts.snxgui.exception.ShownOnModalException;
-import com.klimuts.snxgui.model.ConfigKey;
-import com.klimuts.snxgui.service.ConfigService;
+import com.klimuts.snxgui.model.enums.ConfigKey;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
@@ -12,6 +11,7 @@ import javafx.scene.control.TextField;
 import java.io.IOException;
 import java.util.Map;
 
+@Component
 public class ConfigWindowController extends WindowController {
 
     @FXML public TextField serverAddress;
@@ -19,12 +19,7 @@ public class ConfigWindowController extends WindowController {
     @FXML public CheckBox enableDebug;
     @FXML public CheckBox disconnectOnExit;
 
-    private ConfigService configService;
-
     public void initialize() {
-        super.initialize();
-        configService = Context.getBean(ConfigService.class);
-
         Map<ConfigKey, String> config = configService.getConfig();
 
         serverAddress.setText(config.get(ConfigKey.SERVER_ADDRESS));

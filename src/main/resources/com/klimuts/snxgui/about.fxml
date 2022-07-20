@@ -78,7 +78,7 @@
                             <Font name="Arial" size="16.0"/>
                         </font>
                     </Label>
-                    <Label fx:id="authorLabel" onMouseClicked="#onAuthorLabelClicked" styleClass="author-label"
+                    <Label fx:id="authorLabel" onMouseClicked="#onAuthorLabelClick" styleClass="author-label"
                            text="Andrei Klimuts">
                         <font>
                             <Font name="Arial" size="16.0"/>

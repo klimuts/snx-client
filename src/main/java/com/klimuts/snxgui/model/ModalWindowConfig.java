@@ -1,5 +1,6 @@
 package com.klimuts.snxgui.model;
 
+import com.klimuts.snxgui.model.enums.ModalWindowType;
 import javafx.stage.Stage;
 import lombok.Builder;
 import lombok.Data;
