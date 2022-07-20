@@ -20,7 +20,7 @@ TODO
 
 ### Build distributive
 
-To build distributive archive go to `/deploy` dir  
+To build distributive archive go to `/release` dir  
 Run script `build.sh`, for example, from terminal:  
 `$ bash build.sh`
 
@@ -30,7 +30,7 @@ This will create a directory `/build/distribution`, where the ZIP
 ### Bump release
 Note! For administrators only
 
-To bump release go to `/deploy` dir  
+To bump release go to `/release` dir  
 Run script `up_version.sh --[major/minor/build]`, for example, from terminal:  
 `$ bash up_version.sh --build`
 
