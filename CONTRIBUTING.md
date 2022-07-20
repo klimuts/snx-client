@@ -27,10 +27,11 @@ Run script `build.sh`, for example, from terminal:
 This will create a directory `/build/distribution`, where the ZIP
 `snx-client-v1.x.x.zip` will be placed there.
 
-### Bump release
-Note! For administrators only
+### Up release version
+Note! For administrators only.  
+See [RELEASE_POLICY.md](RELEASE_POLICY.md) for more details.
 
-To bump release go to `/release` dir  
+To up release version go to `/release` dir  
 Run script `up_version.sh --[major/minor/build]`, for example, from terminal:  
 `$ bash up_version.sh --build`
 

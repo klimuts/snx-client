@@ -16,7 +16,6 @@ open module com.klimuts.snxgui {
     exports com.klimuts.snxgui.controller;
     exports com.klimuts.snxgui.service;
     exports com.klimuts.snxgui.model;
-    exports com.klimuts.snxgui.handler;
     exports com.klimuts.snxgui.config;
     exports com.klimuts.snxgui.model.enums;
 }

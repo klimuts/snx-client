@@ -22,10 +22,6 @@ import java.net.URL;
 @Component
 public class MainWindowController extends WindowController {
 
-    @Autowired private ConfigService configService;
-    @Autowired private ConnectionService connectionService;
-    @Autowired private ModalWindowService modalWindowService;
-
     @FXML public Button closeButton;
     @FXML public Button minButton;
     @FXML public Button connectButton;

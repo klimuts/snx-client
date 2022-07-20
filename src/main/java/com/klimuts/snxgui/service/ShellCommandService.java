@@ -1,4 +1,4 @@
-package com.klimuts.snxgui.handler;
+package com.klimuts.snxgui.service;
 
 import com.klimuts.snxgui.exception.ShownOnModalException;
 import com.klimuts.snxgui.model.enums.ShellCommand;
@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-public class ShellCommandHandler {
+public class ShellCommandService {
 
     public String runShellCommand(ShellCommand command) {
         return runShellCommand(command, null);
