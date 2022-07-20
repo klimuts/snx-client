@@ -24,6 +24,7 @@ Graphical user interface for CheckPoint SSL Network Extender (SNX) for Linux OS.
     * [Tray](#tray)
 - [Installation](#installation)
 - [Uninstallation](#uninstallation)
+- [Acknowledgments](#acknowledgments)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -142,6 +143,13 @@ Go into application directory, run the uninstall file from the console
 Or for Ubuntu, right-click on uninstall file and select "Run As Program".
 
 This script will automatically remove shortcuts from the desktop and from Applications, and remove service files.
+
+# Acknowledgments
+
+[(Back to top)](#table-of-contents)
+
+* [Kseniya German](mailto:kseniya_herman@senla.eu) - UX and UI design
+* [Aliaksandr Aleinik]() - UX ideas
 
 # Contributing
 
