@@ -1,13 +1,9 @@
 package com.klimuts.snxgui.controller;
 
 import com.klimuts.snxgui.SnxClient;
-import com.klimuts.snxgui.di.annotation.Autowired;
 import com.klimuts.snxgui.di.annotation.Component;
 import com.klimuts.snxgui.model.ModalWindowConfig;
 import com.klimuts.snxgui.model.enums.ModalWindowType;
-import com.klimuts.snxgui.service.ConfigService;
-import com.klimuts.snxgui.service.ConnectionService;
-import com.klimuts.snxgui.service.ModalWindowService;
 import dorkbox.systemTray.SystemTray;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
