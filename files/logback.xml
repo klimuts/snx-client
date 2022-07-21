@@ -1,0 +1,30 @@
+<configuration scan="true" scanPeriod="60 seconds">
+
+    <property name="LOG_HOME" value="${snxgui.log}"/>
+    <statusListener class="ch.qos.logback.core.status.OnConsoleStatusListener"/>
+
+    <appender name="ROLLING_OUT" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_HOME}/snx-client.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_HOME}/archive/%d{yyyy-MM-dd}.%i.zip</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy
+                    class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>10MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%date{dd-MMM-yyyy HH:mm:ss.SSS} - [%-5level] - %35(%logger{10}) - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%date{dd-MMM-yyyy HH:mm:ss.SSS} - [%-5level] - %35(%logger{10}) - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <root level="info">
+        <appender-ref ref="ROLLING_OUT"/>
+        <appender-ref ref="STDOUT"/>
+    </root>
+
+</configuration>

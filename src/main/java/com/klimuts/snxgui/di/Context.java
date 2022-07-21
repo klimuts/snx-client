@@ -1,9 +1,11 @@
 package com.klimuts.snxgui.di;
 
 import com.klimuts.snxgui.di.annotation.Component;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.Map;
 
+@Slf4j
 @Component
 public class Context {
 
@@ -14,6 +16,7 @@ public class Context {
     }
 
     public void addBean(Class<?> clazz, Object bean) {
+        log.trace("Add bean : [{}] to application context", clazz.getName());
         beans.put(clazz, bean);
     }
 

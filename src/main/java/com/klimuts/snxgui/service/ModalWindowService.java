@@ -1,5 +1,6 @@
 package com.klimuts.snxgui.service;
 
+import com.klimuts.snxgui.exception.ErrorMessage;
 import com.klimuts.snxgui.di.annotation.Autowired;
 import com.klimuts.snxgui.di.annotation.Component;
 import com.klimuts.snxgui.exception.ShownOnModalException;
@@ -17,9 +18,11 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.concurrent.Callable;
 
+@Slf4j
 @Component
 public class ModalWindowService {
 
@@ -31,7 +34,10 @@ public class ModalWindowService {
     private Stage modalStage;
 
     public void openModalWindow(ModalWindowConfig config) {
-        Pane modalPane = modalsProvider.loadFxmlFile(config.getWindowType().getFxmlFileName());
+        String fxmlFileName = config.getWindowType().getFxmlFileName();
+        log.trace("Open [{}] modal window", fxmlFileName);
+
+        Pane modalPane = modalsProvider.loadFxmlFile(fxmlFileName);
         Stage parentStage = config.getParentStage();
         parentRoot = parentStage.getScene().getRoot();
         errorMessage = config.getErrorMessage();
@@ -52,11 +58,13 @@ public class ModalWindowService {
     }
 
     public void closeModalWindow() {
+        log.trace("Close modal window");
         parentRoot.setEffect(new DropShadow(BlurType.TWO_PASS_BOX, Color.DIMGRAY, 10, 0, 4, 4));
         modalStage.close();
     }
 
     public void showErrorWindow(Stage stage, String message) {
+        log.trace("Show error modal window, message: {}", message);
         closeModalWindow();
         ModalWindowConfig config = ModalWindowConfig.builder()
                 .windowType(ModalWindowType.ERROR_MODAL_WINDOW)
@@ -115,7 +123,8 @@ public class ModalWindowService {
             try {
                 callback.call();
             } catch (Exception e) {
-                throw new ShownOnModalException("SNX Client: cannot execute callback");
+                log.error("Error when execute modal window close callback", e);
+                throw new ShownOnModalException(ErrorMessage.CANNOT_PERFORM_ACTION);
             }
         }
     }

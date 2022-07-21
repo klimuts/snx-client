@@ -1,14 +1,17 @@
 package com.klimuts.snxgui.controller;
 
 import com.klimuts.snxgui.di.annotation.Component;
+import com.klimuts.snxgui.exception.ErrorMessage;
 import com.klimuts.snxgui.exception.ShownOnModalException;
 import com.klimuts.snxgui.model.enums.SessionInfoKey;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 import java.util.Map;
 
+@Slf4j
 @Component
 public class SessionInfoWindowController extends WindowController {
 
@@ -20,6 +23,7 @@ public class SessionInfoWindowController extends WindowController {
 
     public void initialize() {
         try {
+            log.trace("Initialize session info");
             Map<SessionInfoKey, String> sessionInfo = connectionService.getConnectionInfo();
 
             officeModeIP.setText(sessionInfo.get(SessionInfoKey.OFFICE_MODE_IP));
@@ -29,7 +33,8 @@ public class SessionInfoWindowController extends WindowController {
             timeout.setText(sessionInfo.get(SessionInfoKey.TIMEOUT));
 
         } catch (IOException e) {
-            throw new ShownOnModalException("SNX Client: cannot read state file");
+            log.error("Cannot read state file", e);
+            throw new ShownOnModalException(ErrorMessage.CANNOT_SHOW_WINDOW);
         }
     }
 

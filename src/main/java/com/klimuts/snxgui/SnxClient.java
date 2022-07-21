@@ -20,9 +20,11 @@ import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 
+@Slf4j
 @Component
 public class SnxClient extends Application {
 
@@ -36,18 +38,25 @@ public class SnxClient extends Application {
     private SystemTray systemTray;
 
     @Override
-    public void start(Stage stage) throws IOException {
-        Platform.setImplicitExit(false);
+    public void start(Stage stage) {
+        log.info("Starting SNX Client initialization...");
+        try {
+            Platform.setImplicitExit(false);
 
-        Parent root = initMainStage(stage);
-        initGlobalExceptionHandlers(stage);
-        initDragSettings(stage, root);
-        initSystemTray(stage);
+            Parent root = initMainStage(stage);
+            initGlobalExceptionHandlers(stage);
+            initDragSettings(stage, root);
+            initSystemTray(stage);
 
-        stage.show();
+            stage.show();
+        } catch (Exception e) {
+            log.error("Error when SNX Client initialization", e);
+        }
+        log.info("SNX Client successfully initialized!");
     }
 
     private Parent initMainStage(Stage stage) throws IOException {
+        log.trace("Starting main window initialization");
         Context context = ContextInitializer.init(this, SnxClient.class.getPackageName());
 
         FXMLLoader loader = new FXMLLoader(SnxClient.class.getResource("main.fxml"));
@@ -64,6 +73,7 @@ public class SnxClient extends Application {
         stage.setTitle(AppConfig.APP_NAME);
         stage.setScene(scene);
 
+        log.trace("Main window successfully initialized!");
         return root;
     }
 
@@ -82,45 +92,54 @@ public class SnxClient extends Application {
         SystemTray.DEBUG = false;
         this.systemTray = SystemTray.get("SNX");
         if (systemTray == null) {
+            log.error("Error when init system tray, system tray is null");
             throw new RuntimeException("Unable to load SystemTray!");
         }
         systemTray.installShutdownHook();
 
-        systemTray.getMenu().add(new MenuItem("Show", e -> {
+        systemTray.getMenu().add(new MenuItem(AppConfig.TRAY_ITEM_SHOW, e -> {
             Platform.runLater(() -> {
+                log.trace("Tray [Show] menu item clicked");
                 if (stage.isShowing()) {
                     stage.requestFocus();
                 } else {
                     stage.show();
                 }
             });
-        })).setShortcut('o');
+        })).setShortcut(AppConfig.TRAY_ITEM_SHOW_SHORTCUT);
 
-        systemTray.getMenu().add(new MenuItem("Quit", event -> {
+        systemTray.getMenu().add(new MenuItem(AppConfig.TRAY_ITEM_QUIT, event -> {
+            log.trace("Tray [Quit] menu item clicked");
             systemTray.shutdown();
             try {
                 if (Boolean.parseBoolean(configService.getConfig().get(ConfigKey.DISCONNECT_ON_EXIT))) {
+                    log.trace("Disconnect by [{}] config option", ConfigKey.DISCONNECT_ON_EXIT.name());
                     connectionService.disconnect();
                 }
             } catch (Exception e) {
+                log.error("Error when terminate application", e);
                 Platform.exit();
             }
+            log.trace("Terminate application");
             Platform.exit();
-        })).setShortcut('q');
+        })).setShortcut(AppConfig.TRAY_ITEM_QUIT_SHORTCUT);
     }
 
     private void initGlobalExceptionHandlers(Stage stage) {
         Thread.setDefaultUncaughtExceptionHandler((thread, e) -> {
             Throwable rootCause = ExceptionUtils.findRootCause(e);
+            log.trace("DefaultUncaughtExceptionHandler: " + rootCause.getMessage());
             Platform.runLater(() -> modalWindowService.showErrorWindow(stage, rootCause.getMessage()));
         });
         Thread.currentThread().setUncaughtExceptionHandler((thread, e) -> {
             Throwable rootCause = ExceptionUtils.findRootCause(e);
+            log.trace("CurrentThreadUncaughtExceptionHandler: " + rootCause.getMessage());
             modalWindowService.showErrorWindow(stage, rootCause.getMessage());
         });
     }
 
     public static void main(String[] args) {
+        log.trace("Start application main method");
         com.sun.javafx.application.LauncherImpl.launchApplication(SnxClient.class, SnxClientPreloader.class, args);
     }
 

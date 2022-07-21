@@ -27,18 +27,13 @@ sudo cp ~/Desktop/snxgui.desktop /usr/share/applications
 
 ### Creates application service files
 
-# Logs folder
-echo "-> Create logs folder"
-mkdir -p "log"
-chmod -R 777 log
-
 # Start script
 echo "-> Create startup file"
 {
 cat <<EOF >>bin/start
 #!/bin/bash
 cd $CURRENT_DIR/bin
-nohup ./snx-client > ../log/snx.log 2>&1 & sleep 0.01
+nohup ./snx-client & sleep 0.01
 echo $! > run.pid
 kill -9 $(cat run.pid)
 EOF

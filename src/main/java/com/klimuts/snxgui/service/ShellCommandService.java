@@ -1,20 +1,24 @@
-package com.klimuts.snxgui.handler;
+package com.klimuts.snxgui.service;
 
+import com.klimuts.snxgui.exception.ErrorMessage;
 import com.klimuts.snxgui.exception.ShownOnModalException;
 import com.klimuts.snxgui.model.enums.ShellCommand;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-public class ShellCommandHandler {
+@Slf4j
+public class ShellCommandService {
 
     public String runShellCommand(ShellCommand command) {
         return runShellCommand(command, null);
     }
 
     public String runShellCommand(ShellCommand command, String arg) {
+        log.debug("Execute shell command: [{}: {}]", command.name(), command.value());
         String cmd;
         if (arg != null && !arg.isEmpty()) {
             cmd = String.format(command.value(), arg);
@@ -31,12 +35,16 @@ public class ShellCommandHandler {
 
             if (exitVal == 0) {
                 collectShellOutput(output, process.getInputStream());
+                log.debug("Command [{}] executed successfully, exit code: 0", command);
             } else {
                 collectShellOutput(output, process.getErrorStream());
                 collectShellOutput(output, process.getInputStream());
+                log.debug("Command [{}] failed, exit code: {}}", command, exitVal);
             }
+
         } catch (IOException | InterruptedException e) {
-            throw new ShownOnModalException("SNX Client: cannot execute shell command");
+            log.error("Error when execute shell command", e);
+            throw new ShownOnModalException(ErrorMessage.CANNOT_PERFORM_ACTION);
         }
         return output.toString();
     }

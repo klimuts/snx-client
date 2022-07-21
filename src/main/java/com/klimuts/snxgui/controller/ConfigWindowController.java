@@ -1,5 +1,6 @@
 package com.klimuts.snxgui.controller;
 
+import com.klimuts.snxgui.exception.ErrorMessage;
 import com.klimuts.snxgui.di.annotation.Component;
 import com.klimuts.snxgui.exception.ShownOnModalException;
 import com.klimuts.snxgui.model.enums.ConfigKey;
@@ -7,10 +8,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 import java.util.Map;
 
+@Slf4j
 @Component
 public class ConfigWindowController extends WindowController {
 
@@ -30,6 +33,7 @@ public class ConfigWindowController extends WindowController {
 
     @FXML
     public void onSaveButtonClick(ActionEvent actionEvent) {
+        log.trace("[Save] button clicked");
         Map<ConfigKey, String> config = configService.getConfig();
 
         config.put(ConfigKey.SERVER_ADDRESS, serverAddress.getText());
@@ -40,7 +44,8 @@ public class ConfigWindowController extends WindowController {
         try {
             configService.saveConfig(config);
         } catch (IOException e) {
-            throw new ShownOnModalException("SNX Client: cannot save config files");
+            log.error("Error when save config files", e);
+            throw new ShownOnModalException(ErrorMessage.CANNOT_PERFORM_ACTION);
         }
         modalWindowService.closeModalWindow();
     }
