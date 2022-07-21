@@ -1,4 +1,4 @@
-# SNX Client v1.0.1
+# SNX Client v1.0.2
 
 Graphical user interface for CheckPoint SSL Network Extender (SNX) for Linux OS.
 
