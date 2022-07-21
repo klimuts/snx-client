@@ -12,9 +12,11 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import lombok.extern.slf4j.Slf4j;
 
 import java.net.URL;
 
+@Slf4j
 @Component
 public class MainWindowController extends WindowController {
 
@@ -44,18 +46,21 @@ public class MainWindowController extends WindowController {
 
     @FXML
     public void onCloseButtonClick(ActionEvent event) {
+        log.trace("[Close] button clicked");
         Stage stage = (Stage) closeButton.getScene().getWindow();
         stage.close();
     }
 
     @FXML
     public void onMinimizeButtonClick(ActionEvent event) {
+        log.trace("[Minimize] button clicked");
         Stage stage = (Stage) closeButton.getScene().getWindow();
         stage.setIconified(true);
     }
 
     @FXML
     protected void onConnectButtonClick() {
+        log.trace("[(Dis)Connect] button clicked");
         if (connectionService.isConnected()) {
             connectionService.disconnect();
             updateMainWindow();
@@ -72,6 +77,7 @@ public class MainWindowController extends WindowController {
 
     @FXML
     public void onAboutButtonClick(ActionEvent actionEvent) {
+        log.trace("[About] button clicked");
         ModalWindowConfig config = ModalWindowConfig.builder()
                 .windowType(ModalWindowType.ABOUT_MODAL_WINDOW)
                 .closeOnMaskClick(true)
@@ -82,6 +88,7 @@ public class MainWindowController extends WindowController {
 
     @FXML
     public void onSettingsButtonClick(ActionEvent actionEvent) {
+        log.trace("[Settings] button clicked");
         ModalWindowConfig config = ModalWindowConfig.builder()
                 .windowType(ModalWindowType.SETTINGS_MODAL_WINDOW)
                 .closeOnMaskClick(false)
@@ -92,6 +99,7 @@ public class MainWindowController extends WindowController {
 
     @FXML
     public void onSessionInfoButtonClick(MouseEvent actionEvent) {
+        log.trace("[Session info] button clicked");
         ModalWindowConfig config = ModalWindowConfig.builder()
                 .windowType(ModalWindowType.SESSION_MODAL_WINDOW)
                 .closeOnMaskClick(true)
@@ -102,8 +110,10 @@ public class MainWindowController extends WindowController {
 
     private Boolean updateMainWindow() {
         if (connectionService.isConnected()) {
+            log.trace("toggle [connected] window state");
             toggleConnectedWindowState();
         } else {
+            log.trace("toggle [disconnected] window state");
             toggleDisconnectedWindowState();
         }
         return true;

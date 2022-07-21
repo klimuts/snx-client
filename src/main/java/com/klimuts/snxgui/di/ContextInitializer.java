@@ -6,6 +6,7 @@ import com.klimuts.snxgui.di.annotation.Component;
 import io.github.classgraph.ClassGraph;
 import io.github.classgraph.ClassInfoList;
 import io.github.classgraph.ScanResult;
+import lombok.extern.slf4j.Slf4j;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
@@ -16,24 +17,29 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+@Slf4j
 public class ContextInitializer {
 
     private static final String SUPERCLASS_NAME = "java.lang.Object";
 
     public static Context init(SnxClient mainClassBean, String packageName) {
+        log.debug("Starting context building");
         Context context = new Context(new HashMap<>());
         context.addBean(context.getClass(), context);
         context.addBean(mainClassBean.getClass(), mainClassBean);
 
         List<Class<?>> classes = findPackageClasses(packageName);
         Set<Class<?>> components = findManagedComponents(classes);
+        log.trace("Found [{}] classes, [{}] managed components", classes.size(), components.size());
 
         initDependencies(context, components);
 
+        log.debug("Context successfully built");
         return context;
     }
 
     private static void initDependencies(Context context, Set<Class<?>> components) {
+        log.trace("Configuring components dependencies");
         components.forEach(clazz -> {
             try {
                 Object component = context.getBean(clazz);
@@ -50,17 +56,18 @@ public class ContextInitializer {
                         context.addBean(field.getType(), dependency);
                     }
                     field.set(context.getBean(clazz), dependency);
+                    log.trace("[{}] set field: [{}]", clazz.getName(), field.getType());
                     field.setAccessible(false);
                 }
             } catch (InstantiationException | IllegalAccessException | IllegalArgumentException
                     | InvocationTargetException | NoSuchMethodException | SecurityException e) {
-                e.printStackTrace();
+                log.error("Error when configuring components dependencies", e);
             }
         });
     }
 
     private static List<Class<?>> findPackageClasses(String packageName) {
-        List<Class<?>> classes;
+        List<Class<?>> classes = new ArrayList<>();
         ClassGraph.CIRCUMVENT_ENCAPSULATION = ClassGraph.CircumventEncapsulationMethod.JVM_DRIVER;
         try (ScanResult scanResult = new ClassGraph()
                 .enableAllInfo()
@@ -68,7 +75,9 @@ public class ContextInitializer {
                 .scan()) {
             ClassInfoList controlClasses = scanResult.getSubclasses(SUPERCLASS_NAME);
 
-            classes = new ArrayList<>(controlClasses.loadClasses());
+            classes.addAll(controlClasses.loadClasses());
+        } catch (Exception e) {
+            log.error("Error when scanning package classes", e);
         }
         return classes;
     }
