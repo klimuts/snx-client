@@ -22,7 +22,7 @@
                 <children>
                     <Label prefHeight="26.0" prefWidth="328.0" text="Configuration">
                         <font>
-                            <Font name="Arial Bold" size="22.0"/>
+                            <Font name="Liberation Sans Bold" size="22.0"/>
                         </font>
                         <HBox.margin>
                             <Insets top="10.0"/>
@@ -39,7 +39,7 @@
                 <children>
                     <Label prefHeight="14.0" prefWidth="167.0" text="Server address">
                         <font>
-                            <Font name="Arial Bold" size="16.0"/>
+                            <Font name="Liberation Sans Bold" size="16.0"/>
                         </font>
                         <HBox.margin>
                             <Insets bottom="-10.0"/>
@@ -51,7 +51,7 @@
                 <children>
                     <TextField fx:id="serverAddress" alignment="BASELINE_LEFT" prefHeight="52.0" prefWidth="348.0">
                         <font>
-                            <Font name="Arial" size="16.0"/>
+                            <Font name="Liberation Sans" size="16.0"/>
                         </font>
                         <padding>
                             <Insets bottom="10.0" left="10.0"/>
@@ -72,7 +72,7 @@
                 <children>
                     <Label prefHeight="14.0" prefWidth="167.0" text="Login">
                         <font>
-                            <Font name="Arial Bold" size="16.0"/>
+                            <Font name="Liberation Sans Bold" size="16.0"/>
                         </font>
                         <HBox.margin>
                             <Insets bottom="-10.0"/>
@@ -84,7 +84,7 @@
                 <children>
                     <TextField fx:id="login" alignment="BASELINE_LEFT" prefHeight="52.0" prefWidth="348.0">
                         <font>
-                            <Font name="Arial" size="16.0"/>
+                            <Font name="Liberation Sans" size="16.0"/>
                         </font>
                         <padding>
                             <Insets bottom="10.0" left="10.0"/>
@@ -102,7 +102,7 @@
                 <children>
                     <Label prefHeight="14.0" prefWidth="167.0" text="Common">
                         <font>
-                            <Font name="Arial Bold" size="16.0"/>
+                            <Font name="Liberation Sans Bold" size="16.0"/>
                         </font>
                         <HBox.margin>
                             <Insets bottom="-10.0"/>
@@ -119,12 +119,12 @@
                                     <Insets bottom="10.0"/>
                                 </VBox.margin>
                                 <font>
-                                    <Font name="Arial" size="16.0"/>
+                                    <Font name="Liberation Sans" size="16.0"/>
                                 </font>
                             </CheckBox>
                             <CheckBox fx:id="disconnectOnExit" mnemonicParsing="false" text="Disconnect on exit">
                                 <font>
-                                    <Font name="Arial" size="16.0"/>
+                                    <Font name="Liberation Sans" size="16.0"/>
                                 </font>
                             </CheckBox>
                         </children>
@@ -139,13 +139,13 @@
                             <Insets right="10.0"/>
                         </HBox.margin>
                         <font>
-                            <Font name="Arial Bold" size="13.0"/>
+                            <Font name="Liberation Sans Bold" size="13.0"/>
                         </font>
                     </Button>
                     <Button defaultButton="true" mnemonicParsing="false" onAction="#onSaveButtonClick"
                             styleClass="ok-button" text="SAVE">
                         <font>
-                            <Font name="Arial Bold" size="13.0"/>
+                            <Font name="Liberation Sans Bold" size="13.0"/>
                         </font>
                     </Button>
                 </children>

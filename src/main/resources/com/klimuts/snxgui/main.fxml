@@ -73,7 +73,7 @@
                     <Label fx:id="statusText" prefHeight="20.0" prefWidth="125.0" text="Disconnected"
                            textAlignment="RIGHT">
                         <font>
-                            <Font name="Arial Bold" size="17.0"/>
+                            <Font name="Liberation Sans Bold" size="17.0"/>
                         </font>
                         <HBox.margin>
                             <Insets left="-50.0"/>
@@ -87,7 +87,7 @@
                            prefWidth="87.0" styleClass="session-info-button"
                            text="Session info" textAlignment="CENTER">
                         <font>
-                            <Font name="Arial" size="14.0"/>
+                            <Font name="Liberation Sans" size="14.0"/>
                         </font>
                     </Label>
                 </children>
@@ -101,7 +101,7 @@
                             prefHeight="38.0" prefWidth="280.0" styleClass="connect-button" text="CONNECT"
                             textFill="WHITE">
                         <font>
-                            <Font name="Arial Bold" size="14.0"/>
+                            <Font name="Liberation Sans Bold" size="14.0"/>
                         </font>
                     </Button>
                 </children>
@@ -113,7 +113,7 @@
                 <children>
                     <Label fx:id="connectHint" text="Press “connect” to continue">
                         <font>
-                            <Font name="Arial" size="14.0"/>
+                            <Font name="Liberation Sans" size="14.0"/>
                         </font>
                     </Label>
                 </children>

@@ -21,7 +21,7 @@
                 <children>
                     <Label prefHeight="26.0" prefWidth="328.0" text="Session info">
                         <font>
-                            <Font name="Arial Bold" size="22.0"/>
+                            <Font name="Liberation Sans Bold" size="22.0"/>
                         </font>
                         <HBox.margin>
                             <Insets top="10.0"/>
@@ -40,7 +40,7 @@
                         <children>
                             <Label prefHeight="20.0" prefWidth="148.0" text="Office Mode IP">
                                 <font>
-                                    <Font name="Arial Bold" size="15.0"/>
+                                    <Font name="Liberation Sans Bold" size="15.0"/>
                                 </font>
                             </Label>
                         </children>
@@ -55,7 +55,7 @@
                         <children>
                             <Label fx:id="officeModeIP" prefHeight="20.0" prefWidth="209.0" text="-">
                                 <font>
-                                    <Font name="Arial" size="15.0"/>
+                                    <Font name="Liberation Sans" size="15.0"/>
                                 </font>
                             </Label>
                         </children>
@@ -76,7 +76,7 @@
                         <children>
                             <Label prefHeight="20.0" prefWidth="148.0" text="DNS Server">
                                 <font>
-                                    <Font name="Arial Bold" size="15.0"/>
+                                    <Font name="Liberation Sans Bold" size="15.0"/>
                                 </font>
                             </Label>
                         </children>
@@ -91,7 +91,7 @@
                         <children>
                             <Label fx:id="dnsServer" prefHeight="20.0" prefWidth="207.0" text="-">
                                 <font>
-                                    <Font name="Arial" size="15.0"/>
+                                    <Font name="Liberation Sans" size="15.0"/>
                                 </font>
                             </Label>
                         </children>
@@ -112,7 +112,7 @@
                         <children>
                             <Label prefHeight="41.0" prefWidth="145.0" text="Secondary DNS Server" wrapText="true">
                                 <font>
-                                    <Font name="Arial Bold" size="15.0"/>
+                                    <Font name="Liberation Sans Bold" size="15.0"/>
                                 </font>
                             </Label>
                         </children>
@@ -128,7 +128,7 @@
                             <Label fx:id="secondaryDnsServer" alignment="TOP_LEFT" prefHeight="45.0" prefWidth="205.0"
                                    text="-" wrapText="true">
                                 <font>
-                                    <Font name="Arial" size="15.0"/>
+                                    <Font name="Liberation Sans" size="15.0"/>
                                 </font>
                             </Label>
                         </children>
@@ -149,7 +149,7 @@
                         <children>
                             <Label prefHeight="20.0" prefWidth="148.0" text="DNS Suffix">
                                 <font>
-                                    <Font name="Arial Bold" size="15.0"/>
+                                    <Font name="Liberation Sans Bold" size="15.0"/>
                                 </font>
                             </Label>
                         </children>
@@ -165,7 +165,7 @@
                             <Label fx:id="dnsSuffix" alignment="TOP_LEFT" prefHeight="44.0" prefWidth="205.0" text="-"
                                    wrapText="true">
                                 <font>
-                                    <Font name="Arial" size="15.0"/>
+                                    <Font name="Liberation Sans" size="15.0"/>
                                 </font>
                             </Label>
                         </children>
@@ -186,7 +186,7 @@
                         <children>
                             <Label prefHeight="20.0" prefWidth="148.0" text="Timeout">
                                 <font>
-                                    <Font name="Arial Bold" size="15.0"/>
+                                    <Font name="Liberation Sans Bold" size="15.0"/>
                                 </font>
                             </Label>
                         </children>
@@ -201,7 +201,7 @@
                         <children>
                             <Label fx:id="timeout" prefHeight="20.0" prefWidth="204.0" text="-">
                                 <font>
-                                    <Font name="Arial" size="15.0"/>
+                                    <Font name="Liberation Sans" size="15.0"/>
                                 </font>
                             </Label>
                         </children>

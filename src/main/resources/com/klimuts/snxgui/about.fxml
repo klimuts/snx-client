@@ -23,7 +23,7 @@
                 <children>
                     <Label prefHeight="26.0" prefWidth="328.0" text="Information">
                         <font>
-                            <Font name="Arial Bold" size="22.0"/>
+                            <Font name="Liberation Sans Bold" size="22.0"/>
                         </font>
                         <HBox.margin>
                             <Insets top="10.0"/>
@@ -66,7 +66,7 @@
                     <Label prefHeight="42.0" prefWidth="341.0"
                            text="Graphical user interface for CheckPoint SSL Network Extender (SNX) for Linux OS" wrapText="true">
                         <font>
-                            <Font name="Arial" size="16.0"/>
+                            <Font name="Liberation Sans" size="16.0"/>
                         </font>
                     </Label>
                 </children>
@@ -75,13 +75,13 @@
                 <children>
                     <Label prefHeight="20.0" prefWidth="83.0" text="Created by">
                         <font>
-                            <Font name="Arial" size="16.0"/>
+                            <Font name="Liberation Sans" size="16.0"/>
                         </font>
                     </Label>
                     <Label fx:id="authorLabel" onMouseClicked="#onAuthorLabelClick" styleClass="author-label"
                            text="Andrei Klimuts">
                         <font>
-                            <Font name="Arial" size="16.0"/>
+                            <Font name="Liberation Sans" size="16.0"/>
                         </font>
                     </Label>
                 </children>
