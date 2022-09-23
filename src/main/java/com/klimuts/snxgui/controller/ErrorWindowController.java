@@ -12,7 +12,7 @@ public class ErrorWindowController extends WindowController {
     public Label message;
 
     public void initialize() {
-        Platform.runLater(() -> message.setText(modalWindowService.getErrorMessage()));
+        Platform.runLater(() -> message.setText(modalWindowService.getConfig().getErrorMessage()));
     }
 
 }

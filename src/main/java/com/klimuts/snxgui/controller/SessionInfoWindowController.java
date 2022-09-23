@@ -26,6 +26,11 @@ public class SessionInfoWindowController extends WindowController {
             log.trace("Initialize session info");
             Map<SessionInfoKey, String> sessionInfo = connectionService.getConnectionInfo();
 
+            if (sessionInfo == null) {
+                log.info("Session info is empty, but status is CONNECTED." +
+                        " Connection established without using the \"SNX client\" application.");
+            }
+
             officeModeIP.setText(sessionInfo.get(SessionInfoKey.OFFICE_MODE_IP));
             dnsServer.setText(sessionInfo.get(SessionInfoKey.DNS_SERVER));
             secondaryDnsServer.setText(sessionInfo.get(SessionInfoKey.SECONDARY_DNS_SERVER));

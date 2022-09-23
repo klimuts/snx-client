@@ -38,14 +38,15 @@ public class StateFileService {
             }
         }
         if (lines.isEmpty()) {
-            log.trace("The status file seems to contain a multi-line SNX error");
+            log.trace("The state file seems to contain a multi-line SNX error");
             return Collections.singletonList(source.get(0));
         }
         return lines;
     }
 
     public void clearStateFile() throws IOException {
-            Files.writeString(Path.of(AppConfig.STATE_PATH), "");
+        log.trace("Clear state file");
+        Files.writeString(Path.of(AppConfig.STATE_PATH), "");
     }
 
 }

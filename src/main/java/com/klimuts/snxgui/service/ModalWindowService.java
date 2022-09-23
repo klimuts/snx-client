@@ -29,18 +29,18 @@ public class ModalWindowService {
     @Autowired ModalPaneLoader modalsProvider;
 
     @Getter
-    private String errorMessage;
+    private ModalWindowConfig config;
     private Parent parentRoot;
     private Stage modalStage;
 
     public void openModalWindow(ModalWindowConfig config) {
+        this.config = config;
         String fxmlFileName = config.getWindowType().getFxmlFileName();
         log.trace("Open [{}] modal window", fxmlFileName);
 
         Pane modalPane = modalsProvider.loadFxmlFile(fxmlFileName);
         Stage parentStage = config.getParentStage();
         parentRoot = parentStage.getScene().getRoot();
-        errorMessage = config.getErrorMessage();
 
         modalStage = new Stage(StageStyle.TRANSPARENT);
         modalStage.initModality(Modality.WINDOW_MODAL);
@@ -51,7 +51,7 @@ public class ModalWindowService {
         modalStage.setScene(scene);
 
         addModalitySettings(parentStage);
-        addCallbacksSettings(config);
+        addCallbacksSettings();
         addPositionSettings(parentStage);
 
         modalStage.show();
@@ -63,15 +63,22 @@ public class ModalWindowService {
         modalStage.close();
     }
 
+    private void closeNonErrorModalWindow() {
+        log.trace("{}", this.config);
+        if (this.config != null && this.config.getWindowType() != ModalWindowType.ERROR_MODAL_WINDOW ) {
+            closeModalWindow();
+        }
+    }
+
     public void showErrorWindow(Stage stage, String message) {
         log.trace("Show error modal window, message: {}", message);
-        closeModalWindow();
         ModalWindowConfig config = ModalWindowConfig.builder()
                 .windowType(ModalWindowType.ERROR_MODAL_WINDOW)
                 .closeOnMaskClick(true)
                 .parentStage(stage)
                 .errorMessage(message)
                 .build();
+        closeNonErrorModalWindow();
         openModalWindow(config);
     }
 
@@ -106,8 +113,8 @@ public class ModalWindowService {
         parentStage.getScene().getRoot().setEffect(dropShadow);
     }
 
-    private void addCallbacksSettings(ModalWindowConfig config) {
-        if (config.isCloseOnMaskClick()) {
+    private void addCallbacksSettings() {
+        if (this.config.isCloseOnMaskClick()) {
             modalStage.focusedProperty().addListener((ov, onHidden, onShown) -> {
                 if (onHidden) {
                     parentRoot.setEffect(new DropShadow(BlurType.TWO_PASS_BOX, Color.DIMGRAY, 10, 0, 4, 4));
@@ -115,7 +122,7 @@ public class ModalWindowService {
                 }
             });
         }
-        modalStage.setOnHidden(event -> handleCallback(config.getCloseCallback()));
+        modalStage.setOnHidden(event -> handleCallback(this.config.getCloseCallback()));
     }
 
     private void handleCallback(Callable<Boolean> callback) {

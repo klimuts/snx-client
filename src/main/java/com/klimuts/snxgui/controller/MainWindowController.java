@@ -110,10 +110,10 @@ public class MainWindowController extends WindowController {
 
     private Boolean updateMainWindow() {
         if (connectionService.isConnected()) {
-            log.trace("toggle [connected] window state");
+            log.trace("Toggle [connected] window state");
             toggleConnectedWindowState();
         } else {
-            log.trace("toggle [disconnected] window state");
+            log.trace("Toggle [disconnected] window state");
             toggleDisconnectedWindowState();
         }
         return true;
