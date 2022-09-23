@@ -30,8 +30,10 @@ public class ConnectionService {
 
     public boolean isConnected() {
         log.trace("Run [{}] command", ShellCommand.CHECK_TUNNEL_INTERFACE.name());
-        String snxConnect = shellCommandService.runShellCommand(ShellCommand.CHECK_TUNNEL_INTERFACE);
-        return !snxConnect.isEmpty();
+        String snxTunnel = shellCommandService.runShellCommand(ShellCommand.CHECK_TUNNEL_INTERFACE);
+        boolean isConnected = !snxTunnel.isEmpty();
+        log.trace(isConnected ? "Tunnel is up: {}" : "Tunnel is down", snxTunnel);
+        return isConnected;
     }
 
     public Map<SessionInfoKey, String> getConnectionInfo() throws IOException {

@@ -22,7 +22,7 @@
             <pattern>%date{dd-MMM-yyyy HH:mm:ss.SSS} - [%-5level] - %35(%logger{10}) - %msg%n</pattern>
         </encoder>
     </appender>
-    <root level="info">
+    <root level="trace">
         <appender-ref ref="ROLLING_OUT"/>
         <appender-ref ref="STDOUT"/>
     </root>

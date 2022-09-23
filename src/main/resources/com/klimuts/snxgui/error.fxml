@@ -29,7 +29,7 @@
             </ImageView>
             <Label prefHeight="26.0" prefWidth="286.0" text="Error">
                 <font>
-                    <Font name="Arial Bold" size="22.0"/>
+                    <Font name="Liberation Sans Bold" size="22.0"/>
                 </font>
                 <HBox.margin>
                     <Insets left="10.0" top="10.0"/>
@@ -44,7 +44,7 @@
             </VBox.margin>
             <Label fx:id="message" alignment="TOP_LEFT" prefHeight="122.0" prefWidth="341.0" wrapText="true">
                 <font>
-                    <Font name="Arial" size="16.0"/>
+                    <Font name="Liberation Sans" size="16.0"/>
                 </font>
             </Label>
         </HBox>
