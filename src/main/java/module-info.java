@@ -10,6 +10,7 @@ open module com.klimuts.snxgui {
 
     requires slf4j.api;
     requires SystemTray;
+    requires kotlin.stdlib;
     requires io.github.classgraph;
     requires io.github.toolfactory.narcissus;
     requires io.github.toolfactory.jvm;

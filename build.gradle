@@ -38,21 +38,27 @@ dependencies {
     implementation 'org.slf4j:slf4j-api:1.7.25'
 
     implementation 'com.dorkbox:SystemTray:4.1'
-    implementation 'com.dorkbox:SystemTray-Dorkbox-Util:2.20'
 
     implementation 'io.github.classgraph:classgraph:4.8.149'
-    implementation 'io.github.toolfactory:jvm-driver:9.1.1'
+    implementation 'io.github.toolfactory:jvm-driver:9.3.0'
 
     compileOnly 'org.projectlombok:lombok:1.18.24'
     annotationProcessor 'org.projectlombok:lombok:1.18.24'
     testImplementation "org.projectlombok:lombok:1.18.24"
 
-    testCompileOnly 'org.junit.jupiter:junit-jupiter-api:5.8.2'
+    testCompileOnly 'org.junit.jupiter:junit-jupiter-api:5.9.0'
     testCompileOnly group: 'org.assertj', name: 'assertj-core', version: '3.13.2'
 
     testCompileOnly 'org.testfx:testfx-core:4.0.16-alpha'
     testCompileOnly 'org.testfx:testfx-junit5:4.0.16-alpha'
 }
+
+// IDE run/debug ( ./gradlew run or ./gradlew run --debug-jvm)
+applicationDefaultJvmArgs = ["--add-modules=javafx.controls,javafx.fxml",
+                             "--add-exports=javafx.graphics/com.sun.glass.ui=com.klimuts.snxgui",
+                             "--add-exports=javafx.graphics/com.sun.javafx.application=com.klimuts.snxgui",
+                             "--add-exports=javafx.graphics/com.sun.javafx.tk=SwtJavaFx"
+]
 
 jlink {
     options = ['--strip-debug', '--compress', '2', '--no-header-files', '--no-man-pages']
