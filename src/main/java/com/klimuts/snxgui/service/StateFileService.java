@@ -46,7 +46,10 @@ public class StateFileService {
 
     public void clearStateFile() throws IOException {
         log.trace("Clear state file");
-        Files.writeString(Path.of(AppConfig.STATE_PATH), "");
+        Path path = Path.of(AppConfig.STATE_PATH);
+        if (Files.exists(path)) {
+            Files.writeString(path, "");
+        }
     }
 
 }

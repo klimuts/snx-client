@@ -51,13 +51,16 @@ public class ConfigService {
 
     private void initConfig(String configPath, String separator) throws IOException {
         log.debug("Starting config reading, path: [{}]", configPath);
-        List<String> lines = Files.readAllLines(Path.of(configPath));
-        lines.forEach(line -> {
-            String[] row = line.split(separator);
-            ConfigKey key = ConfigKey.findByRawValue(row[0].trim());
-            String value = row.length > 1 ? row[1].trim() : "";
-            config.put(key, value);
-        });
+        Path path = Path.of(configPath);
+        if (Files.exists(path)) {
+            List<String> lines = Files.readAllLines(path);
+            lines.forEach(line -> {
+                String[] row = line.split(separator);
+                ConfigKey key = ConfigKey.findByRawValue(row[0].trim());
+                String value = row.length > 1 ? row[1].trim() : "";
+                config.put(key, value);
+            });
+        }
         log.debug("Config successfully read, path: [{}]", configPath);
     }
 
