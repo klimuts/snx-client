@@ -1,6 +1,7 @@
 package com.klimuts.snxgui.controller;
 
 import com.klimuts.snxgui.di.annotation.Autowired;
+import com.klimuts.snxgui.model.enums.WindowState;
 import com.klimuts.snxgui.service.ConfigService;
 import com.klimuts.snxgui.service.ConnectionService;
 import com.klimuts.snxgui.service.ModalWindowService;
@@ -19,6 +20,26 @@ public class WindowController {
     protected void onCloseButtonClick(ActionEvent actionEvent) {
         log.trace("[Close] button clicked");
         modalWindowService.closeModalWindow();
+    }
+
+    protected void toggleWindowState(WindowState state) {
+        switch (state) {
+            case CONNECTING -> getConnectingWindowState();
+            case CONNECTED -> getConnectedWindowState();
+            case DISCONNECTED -> getDisconnectedWindowState();
+        }
+    }
+
+    protected void getConnectingWindowState() {
+        // NOP, to override
+    }
+
+    protected void getConnectedWindowState() {
+        // NOP, to override
+    }
+
+    protected void getDisconnectedWindowState() {
+        // NOP, to override
     }
 
 }

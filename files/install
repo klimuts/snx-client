@@ -39,6 +39,7 @@ kill -9 $(cat run.pid)
 EOF
 chmod +x bin/start
 } >/dev/null 2>&1;
+chmod 777 "$CURRENT_DIR/bin/state"
 
 # SNX config
 echo "-> Check SNX config file"

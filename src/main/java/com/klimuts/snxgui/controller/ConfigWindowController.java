@@ -23,6 +23,7 @@ public class ConfigWindowController extends WindowController {
     @FXML public CheckBox disconnectOnExit;
 
     public void initialize() {
+        log.trace("Initialize [Config] window");
         Map<ConfigKey, String> config = configService.getConfig();
 
         serverAddress.setText(config.get(ConfigKey.SERVER_ADDRESS));

@@ -25,6 +25,7 @@ public class AboutWindowController extends WindowController {
     @FXML public Label authorLabel;
 
     public void initialize() {
+        log.trace("Initialize [About] window");
         Platform.runLater(this::readVersion);
     }
 

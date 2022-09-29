@@ -21,7 +21,12 @@ public class StateFileService {
     public static final String DATA_SEPARATOR = ":";
 
     public List<String> readStateFile(String stopMarker) throws IOException {
-        List<String> source = Files.readAllLines(Path.of(AppConfig.STATE_PATH));
+        Path path = Path.of(AppConfig.STATE_PATH);
+        if (!Files.exists(path)) {
+            log.trace("State file not exists");
+            return null;
+        }
+        List<String> source = Files.readAllLines(path);
         if (source.isEmpty()) {
             log.trace("State file is empty");
             return null;

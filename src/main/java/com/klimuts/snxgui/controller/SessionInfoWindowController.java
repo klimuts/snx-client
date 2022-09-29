@@ -23,7 +23,7 @@ public class SessionInfoWindowController extends WindowController {
 
     public void initialize() {
         try {
-            log.trace("Initialize session info");
+            log.trace("Initialize [Session info] window");
             Map<SessionInfoKey, String> sessionInfo = connectionService.getConnectionInfo();
 
             if (sessionInfo == null) {
