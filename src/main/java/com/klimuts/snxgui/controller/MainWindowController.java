@@ -71,6 +71,7 @@ public class MainWindowController extends WindowController {
                     .windowType(ModalWindowType.PASSWORD_MODAL_WINDOW)
                     .closeOnMaskClick(false)
                     .parentStage((Stage) mainBox.getScene().getWindow())
+                    .closeCallbackRepeatDelay(3000)
                     .closeCallback(this::updateMainWindow)
                     .build();
             modalWindowService.openModalWindow(config);

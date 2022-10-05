@@ -6,6 +6,7 @@ import com.klimuts.snxgui.di.annotation.Component;
 import com.klimuts.snxgui.exception.ShownOnModalException;
 import com.klimuts.snxgui.model.ModalWindowConfig;
 import com.klimuts.snxgui.model.enums.ModalWindowType;
+import com.klimuts.snxgui.util.TaskUtils;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.effect.BlurType;
@@ -61,6 +62,17 @@ public class ModalWindowService {
         log.trace("Close modal window");
         parentRoot.setEffect(new DropShadow(BlurType.TWO_PASS_BOX, Color.DIMGRAY, 10, 0, 4, 4));
         modalStage.close();
+
+        handleCallback(this.config.getCloseCallback());
+
+        int closeCallbackRepeatDelay = this.config.getCloseCallbackRepeatDelay();
+        if (closeCallbackRepeatDelay > 0) {
+            log.trace("Repeat closing callback...");
+            TaskUtils.startDelayedTask(
+                    closeCallbackRepeatDelay,
+                    () -> handleCallback(this.config.getCloseCallback())
+            );
+        }
     }
 
     private void closeNonErrorModalWindow() {
@@ -122,7 +134,6 @@ public class ModalWindowService {
                 }
             });
         }
-        modalStage.setOnHidden(event -> handleCallback(this.config.getCloseCallback()));
     }
 
     private void handleCallback(Callable<Boolean> callback) {
