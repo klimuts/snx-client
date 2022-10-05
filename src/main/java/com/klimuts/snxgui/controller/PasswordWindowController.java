@@ -75,7 +75,7 @@ public class PasswordWindowController extends WindowController {
             log.error("Connection error, cannot read the connection state file", e);
             throw new ShownOnModalException(ErrorMessage.CANNOT_PERFORM_ACTION);
         }
-        this.toggleWindowState(WindowState.CONNECTED);
+        toggleWindowState(WindowState.CONNECTED);
         modalWindowService.closeModalWindow();
     }
 

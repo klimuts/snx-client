@@ -8,7 +8,6 @@ public enum ModalWindowType {
     SESSION_MODAL_WINDOW("session"),
     ERROR_MODAL_WINDOW("error");
 
-
     ModalWindowType(String fxmlFileName) {
         this.fxmlFileName = fxmlFileName;
     }
