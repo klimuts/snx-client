@@ -1,4 +1,4 @@
-# SNX Client v1.0.3
+# SNX Client v1.0.4
 
 ## ENG
 
