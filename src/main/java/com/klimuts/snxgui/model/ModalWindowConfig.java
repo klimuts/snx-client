@@ -15,6 +15,7 @@ public class ModalWindowConfig {
     private ModalWindowType windowType;
     private boolean closeOnMaskClick;
     private Callable<Boolean> closeCallback;
+    private int closeCallbackRepeatDelay;
     private String errorMessage;
 
 }
