@@ -4,6 +4,7 @@ import com.klimuts.snxgui.SnxClient;
 import com.klimuts.snxgui.di.annotation.Component;
 import com.klimuts.snxgui.model.ModalWindowConfig;
 import com.klimuts.snxgui.model.enums.ModalWindowType;
+import com.klimuts.snxgui.model.enums.WindowState;
 import dorkbox.systemTray.SystemTray;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -36,6 +37,7 @@ public class MainWindowController extends WindowController {
     private URL disconnectedTrayIconUrl;
 
     public void initialize() {
+        log.trace("Initialize [Main] window");
         systemTray = SystemTray.get("SNX");
 
         connectedTrayIconUrl = SnxClient.class.getResource("tray_icons/connected_icon.png");
@@ -109,17 +111,20 @@ public class MainWindowController extends WindowController {
     }
 
     private Boolean updateMainWindow() {
+        WindowState state;
         if (connectionService.isConnected()) {
             log.trace("Toggle [connected] window state");
-            toggleConnectedWindowState();
+            state = WindowState.CONNECTED;
         } else {
             log.trace("Toggle [disconnected] window state");
-            toggleDisconnectedWindowState();
+            state = WindowState.DISCONNECTED;
         }
+        toggleWindowState(state);
         return true;
     }
 
-    private void toggleDisconnectedWindowState() {
+    @Override
+    protected void getDisconnectedWindowState() {
         connectButton.setText("CONNECT");
 
         statusIcon.getStyleClass().clear();
@@ -136,7 +141,8 @@ public class MainWindowController extends WindowController {
         connectHint.setVisible(true);
     }
 
-    private void toggleConnectedWindowState() {
+    @Override
+    protected void getConnectedWindowState() {
         connectButton.setText("DISCONNECT");
 
         statusIcon.getStyleClass().clear();

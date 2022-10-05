@@ -33,12 +33,13 @@ echo "-> Create startup file"
 cat <<EOF >>bin/start
 #!/bin/bash
 cd $CURRENT_DIR/bin
-nohup ./snx-client & sleep 0.01
+nohup ./snx-client >/dev/null 2>&1 & sleep 0.01
 echo $! > run.pid
 kill -9 $(cat run.pid)
 EOF
 chmod +x bin/start
 } >/dev/null 2>&1;
+chmod 777 "$CURRENT_DIR/bin/state"
 
 # SNX config
 echo "-> Check SNX config file"

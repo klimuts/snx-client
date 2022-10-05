@@ -8,7 +8,7 @@ public enum SessionInfoKey {
     DNS_SUFFIX("DNS Suffix"),
     TIMEOUT("Timeout");
 
-    private String rawValue;
+    private final String rawValue;
 
     SessionInfoKey(String rawValue) {
         this.rawValue = rawValue;

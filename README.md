@@ -1,6 +1,6 @@
 # SNX Client v1.0.3
 
-Graphical user interface for CheckPoint SSL Network Extender (SNX) for Linux OS.
+Graphical user interface for CheckPoint SSL Network Extender (SNX) for Ubuntu.
 
 <a href="https://github.com/kilmuts/vpn-client/">
     <img src="doc/images/logo.png" alt="SNX Client" title="SNX Client" height="76" />
@@ -30,7 +30,7 @@ Graphical user interface for CheckPoint SSL Network Extender (SNX) for Linux OS.
 
 # Description
 
-SNX Client is not a full-fledged VPN client. It is the graphical user interface for CheckPoint SSL Network Extender (SNX) for Linux OS.  
+SNX Client is not a full-fledged VPN client. It is the graphical user interface for CheckPoint SSL Network Extender (SNX) for Ubuntu.  
 The SNX Client is designed to make it easy to start, configure, connect, and display the status of a VPN connection. The
 application requires the SNX with all its dependencies to be installed on the system first,
 see [Installation](#installation)

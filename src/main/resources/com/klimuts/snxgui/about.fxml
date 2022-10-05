@@ -64,7 +64,7 @@
             <HBox prefHeight="69.0" prefWidth="350.0">
                 <children>
                     <Label prefHeight="42.0" prefWidth="341.0"
-                           text="Graphical user interface for CheckPoint SSL Network Extender (SNX) for Linux OS" wrapText="true">
+                           text="Graphical user interface for CheckPoint SSL Network Extender (SNX) for Ubuntu" wrapText="true">
                         <font>
                             <Font name="Liberation Sans" size="16.0"/>
                         </font>
