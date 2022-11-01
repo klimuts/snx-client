@@ -35,6 +35,11 @@ The SNX Client is designed to make it easy to start, configure, connect, and dis
 application requires the SNX with all its dependencies to be installed on the system first,
 see [Installation](#installation)
 
+# Problems and Restrictions
+
+If you have not used SNX before, after installing it, the first connection must be made from the command line, using standard SNX commands.
+This is due to the fact that confirmation screens for certificate import are not yet implemented.
+
 # Usage
 
 [(Back to top)](#table-of-contents)
