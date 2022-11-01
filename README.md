@@ -15,6 +15,7 @@ Graphical user interface for CheckPoint SSL Network Extender (SNX) for Ubuntu.
 # Table of contents
 
 - [Description](#description)
+- [Problems and Restrictions](#problems-and-restrictions)
 - [Usage](#usage)
     * [Main window](#main-window)
     * [Configuration](#configuration)
