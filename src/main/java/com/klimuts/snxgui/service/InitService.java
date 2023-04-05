@@ -89,7 +89,6 @@ public class InitService {
             log.error("Error when init system tray, system tray is null");
             throw new RuntimeException("Unable to load SystemTray!");
         }
-        systemTray.installShutdownHook();
 
         systemTray.getMenu().add(new MenuItem(AppConfig.TRAY_ITEM_SHOW, e -> {
             Platform.runLater(() -> {

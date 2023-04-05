@@ -25,19 +25,8 @@ javafx {
     modules = ['javafx.controls', 'javafx.fxml', 'javafx.web', 'javafx.graphics']
 }
 
-// solve com.dorkbox:SystemTray:4.1 loggers issue
-configurations.all {
-    resolutionStrategy {
-        force 'org.slf4j:slf4j-api:1.7.25'
-    }
-}
-
 dependencies {
-    // solve com.dorkbox:SystemTray:4.1 loggers issue
-    implementation 'javax.servlet:javax.servlet-api:4.0.1'
-    implementation 'org.slf4j:slf4j-api:1.7.25'
-
-    implementation 'com.dorkbox:SystemTray:4.1'
+    implementation 'com.dorkbox:SystemTray:4.2.1'
 
     implementation 'io.github.classgraph:classgraph:4.8.149'
     implementation 'io.github.toolfactory:jvm-driver:9.3.0'
@@ -45,6 +34,9 @@ dependencies {
     compileOnly 'org.projectlombok:lombok:1.18.24'
     annotationProcessor 'org.projectlombok:lombok:1.18.24'
     testImplementation "org.projectlombok:lombok:1.18.24"
+
+    implementation 'org.slf4j:slf4j-api:2.0.6'
+    implementation 'ch.qos.logback:logback-classic:1.4.6'
 
     testCompileOnly 'org.junit.jupiter:junit-jupiter-api:5.9.0'
     testCompileOnly group: 'org.assertj', name: 'assertj-core', version: '3.13.2'
@@ -56,8 +48,7 @@ dependencies {
 // IDE run/debug ( ./gradlew run or ./gradlew run --debug-jvm)
 applicationDefaultJvmArgs = ["--add-modules=javafx.controls,javafx.fxml",
                              "--add-exports=javafx.graphics/com.sun.glass.ui=com.klimuts.snxgui",
-                             "--add-exports=javafx.graphics/com.sun.javafx.application=com.klimuts.snxgui",
-                             "--add-exports=javafx.graphics/com.sun.javafx.tk=SwtJavaFx"
+                             "--add-exports=javafx.graphics/com.sun.javafx.application=com.klimuts.snxgui"
 ]
 
 jlink {
@@ -73,11 +64,6 @@ jlink {
         ]
     }
     addExtraDependencies("javafx")
-
-    mergedModule {
-        additive = true
-        uses 'ch.qos.logback.classic.spi.Configurator'
-    }
 }
 
 compileJava {
@@ -100,7 +86,7 @@ application {
     mainClass = 'com.klimuts.snxgui.SnxClient'
 }
 
-task copyBin {
+tasks.register('copyBin') {
     copy {
         from("$projectDir/files") {
             include "state.sh", "state"
@@ -128,7 +114,7 @@ task copyBin {
     delete("$buildDir/image/release")
 }
 
-task zipDistrImage(type: Zip) {
+tasks.register('zipDistrImage', Zip) {
     archiveFileName = "$arch_name"
     destinationDirectory = layout.buildDirectory.dir('distribution')
 
