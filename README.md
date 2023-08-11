@@ -127,7 +127,7 @@ Press `Quit` to terminate the application
 [(Back to top)](#table-of-contents)
 
 CheckPoint SNX Installation Package for Linux OS must be installed
-first [Download link](https://supportcenter.checkpoint.com/supportcenter/portal/user/anon/page/default.psml/media-type/html?action=portlets.DCFileAction&eventSubmit_doGetdcdetails&fileid=22824)
+first
 
 To install SNX Client, unzip the application archive **snx-client-v1.x.x.zip** into a convenient directory  
 Go into this directory, run the install file from the console
