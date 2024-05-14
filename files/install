@@ -17,7 +17,8 @@ Icon=$CURRENT_DIR/conf/icon.png
 Terminal=true
 Type=Application
 Categories=Utility;
-StartupNotify=true" >> ~/Desktop/snxgui.desktop
+StartupNotify=true
+StartupWMClass=SNX Client" >> ~/Desktop/snxgui.desktop
 sudo chmod +x ~/Desktop/snxgui.desktop
 gio set ~/Desktop/snxgui.desktop metadata::trusted true
 
